@@ -25,7 +25,7 @@ public class RelativeMovement : MonoBehaviour
     private Vector3 _velocity;
     private float _forceDown;
 
-    private Vector3 vector;
+ 
     private bool _isGrounded;
 
     private bool _isDucking;
@@ -42,7 +42,6 @@ public class RelativeMovement : MonoBehaviour
         _moveSpeed = Managers.Speed.GetData(); 
 
         _animator.SetBool("Run", true);
-        vector = new Vector3(3, 0, 0);
     }
 
     private void Update()
@@ -98,14 +97,15 @@ public class RelativeMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.DownArrow) && _isGrounded)
             {
-                if (_isDucking)
-                {
-                    UnDucking();
-                }
-                else
-                {
-                    Ducking();
-                }
+                //if (_isDucking)
+                //{
+                //    UnDucking();
+                //}
+                //else
+                //{
+                //    Ducking();
+                //}
+                StartCoroutine(CoroDumping());
             }
 
             if (_charController.isGrounded && _forceDown > 0) _forceDown = 1;
@@ -126,30 +126,27 @@ public class RelativeMovement : MonoBehaviour
     }
 
     IEnumerator CoroMoveLeft()
-    {
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+    {    
         for (int i = 0; i < 12; i++)
         {
             _charController.Move(-laneChangeSpeed);
             yield return new WaitForSeconds(0.015f);
-        }
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        }      
     }
     IEnumerator CoroMoveRight()
-    {
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+    {       
         for (int i = 0; i < 12; i++)
         {
             _charController.Move(laneChangeSpeed);
             yield return new WaitForSeconds(0.015f);
-        }
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        }     
     }
 
-    private void MoveLeft(Vector3 leftborder)
+   IEnumerator CoroDumping()
     {
-        //Vector3 lane = laneChangeSpeed * Time.deltaTime;
-        _charController.Move(-laneChangeSpeed);
+        Ducking();
+        yield return new WaitForSeconds(1f);
+        UnDucking();
     }
 
     private void Ducking()
