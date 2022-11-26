@@ -8,10 +8,14 @@ public class SpawnBlocks : MonoBehaviour
     [SerializeField] public Block[] BlockPrefabs;
     [SerializeField] public Block FirstBlock;
 
+    public int spawnDistance = 20;
+
     private List<Block> spawnedBlocks = new List<Block>();
 
     private int[] posX = { -3, 0, 3 };
-    private int posXBlock;
+    private int posXBlock1;
+    private int posXBlock3;
+    private int posXBlock2;
 
 
     private void Start()
@@ -25,28 +29,83 @@ public class SpawnBlocks : MonoBehaviour
         {
             SpawnDiffBlocks();
         }
-        //StartCoroutine(CoroSpawnBlocks());
-
+        if (spawnedBlocks.Count >= 7)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                Debug.Log(j);
+                DestroyImmediate(spawnedBlocks[j].gameObject, true);
+                spawnedBlocks.RemoveAt(j);
+            }
+        }
     }
 
     private void SpawnDiffBlocks()
     {
-        Block newBlock = Instantiate(BlockPrefabs[Random.Range(0, BlockPrefabs.Length)]);
-        posXBlock = posX[Random.Range(0, posX.Length)];
-        Vector3 posBlock = new Vector3(posXBlock, 0.5f, Player.position.z + 20);
-        newBlock.transform.position = posBlock;
-        spawnedBlocks.Add(newBlock);
-        if (spawnedBlocks.Count >= 3)
+        int i = Random.Range(1, 4);
+        switch (i)
         {
-            DestroyImmediate(spawnedBlocks[0].gameObject, true);
-            spawnedBlocks.RemoveAt(0);
+            case 1:
+                SpawnOneBlock();
+                break;
+            case 2:
+                SpawnTwoBlocks();
+                break;
+            case 3:
+                SpawnThreeBlocks();
+                break;
+            default:
+                break;
+
         }
+
+
+        
     }
 
-    IEnumerator CoroSpawnBlocks()
+    private void SpawnOneBlock()
     {
-        Debug.Log("Coro started");
-        yield return new WaitForSeconds(5f);
-        Debug.Log("Coro finished");
+        Block newBlock = Instantiate(BlockPrefabs[Random.Range(0, BlockPrefabs.Length)]);
+        posXBlock1 = posX[Random.Range(0, posX.Length)];
+        Vector3 posBlock = new Vector3(posXBlock1, 0.5f, Player.position.z + spawnDistance);
+        newBlock.transform.position = posBlock;
+        spawnedBlocks.Add(newBlock);
     }
+
+    private void SpawnTwoBlocks()
+    {
+        Block newBlock = Instantiate(BlockPrefabs[Random.Range(0, BlockPrefabs.Length)]);
+        Block newBlock2 = Instantiate(BlockPrefabs[Random.Range(0, BlockPrefabs.Length)]);
+        posXBlock1 = posX[Random.Range(0, posX.Length)];
+        do
+        {
+            posXBlock2 = posX[Random.Range(0, posX.Length)];
+        }while(posXBlock1 == posXBlock2);
+        Vector3 posBlock1 = new Vector3(posXBlock1, 0.5f, Player.position.z + spawnDistance);
+        Vector3 posBlock2 = new Vector3(posXBlock2, 0.5f, Player.position.z + spawnDistance);
+        newBlock.transform.position = posBlock1;
+        newBlock2.transform.position = posBlock2;
+        spawnedBlocks.Add(newBlock);
+        spawnedBlocks.Add(newBlock2);
+    }
+
+    private void SpawnThreeBlocks()
+    {
+        Block newBlock1 = Instantiate(BlockPrefabs[Random.Range(0, BlockPrefabs.Length)]);
+        Block newBlock2 = Instantiate(BlockPrefabs[Random.Range(0, BlockPrefabs.Length)]);
+        Block newBlock3 = Instantiate(BlockPrefabs[Random.Range(0, BlockPrefabs.Length)]);
+        posXBlock1 = posX[0];
+        posXBlock2 = posX[1];
+        posXBlock3 = posX[2];
+        Vector3 posBlock1 = new Vector3(posXBlock1, 0.5f, Player.position.z + spawnDistance);
+        Vector3 posBlock2 = new Vector3(posXBlock2, 0.5f, Player.position.z + spawnDistance);
+        Vector3 posBlock3= new Vector3(posXBlock3, 0.5f, Player.position.z + spawnDistance);
+        newBlock1.transform.position = posBlock1;
+        newBlock2.transform.position = posBlock2;
+        newBlock3.transform.position = posBlock3;
+        spawnedBlocks.Add(newBlock1);
+        spawnedBlocks.Add(newBlock2);
+        spawnedBlocks.Add(newBlock3);
+    }
+
 }
