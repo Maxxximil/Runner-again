@@ -8,17 +8,17 @@ public class GameController : MonoBehaviour
     [SerializeField] public Transform Player;
     [SerializeField] public Chunk[] ChunkPrefabs;
     [SerializeField] public Chunk FirstChunk;
-    [SerializeField] public Block[] BlockPrefabs;
-    [SerializeField] public Block FirstBlock;
+    //[SerializeField] public Block[] BlockPrefabs;
+    //[SerializeField] public Block FirstBlock;
     [SerializeField] public CollectebleItems[] collectebles;
     [SerializeField] public CollectebleItems FirstColl;
 
     private List<Chunk> spawnedChanks = new List<Chunk>();
-    private List<Block> spawnedBlocks = new List<Block>();
+    //private List<Block> spawnedBlocks = new List<Block>();
     private List<CollectebleItems> spawnedColl = new List<CollectebleItems>();
 
     private int[] posX = { -3, 0, 3 };
-    private int posXBlock;
+    private int posXBlock = 0;
     private int posXColl;
 
     private void Start()
@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
         Managers.Distance.UpdateData(0);
         Managers.Speed.UpdateData(10);
         spawnedChanks.Add(FirstChunk);
-        spawnedBlocks.Add(FirstBlock);
+        //spawnedBlocks.Add(FirstBlock);
         spawnedColl.Add(FirstColl);
     }
     private void Update()
@@ -37,10 +37,10 @@ public class GameController : MonoBehaviour
             SpawnChunk();
         }
 
-        if ((Player.position.z > spawnedBlocks[spawnedBlocks.Count - 1].place.position.z + 5))
-        {
-            SpawnBlocks();
-        }
+        //if ((Player.position.z > spawnedBlocks[spawnedBlocks.Count - 1].place.position.z + 5))
+        //{
+        //    SpawnBlocks();
+        //}
 
 
     }
@@ -63,19 +63,19 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void SpawnBlocks()
-    {
-        Block newBlock = Instantiate(BlockPrefabs[Random.Range(0, BlockPrefabs.Length)]);
-        posXBlock = posX[Random.Range(0, posX.Length)];
-        Vector3 posBlock = new Vector3(posXBlock, 1, Player.position.z + 20);
-        newBlock.transform.position = posBlock;
-        spawnedBlocks.Add(newBlock);
-        if(spawnedBlocks.Count >= 3)
-        {
-            DestroyImmediate(spawnedBlocks[0].gameObject, true);
-            spawnedBlocks.RemoveAt(0);
-        }
-    }
+    //private void SpawnBlocks()
+    //{
+    //    Block newBlock = Instantiate(BlockPrefabs[Random.Range(0, BlockPrefabs.Length)]);
+    //    posXBlock = posX[Random.Range(0, posX.Length)];
+    //    Vector3 posBlock = new Vector3(posXBlock, 1, Player.position.z + 20);
+    //    newBlock.transform.position = posBlock;
+    //    spawnedBlocks.Add(newBlock);
+    //    if(spawnedBlocks.Count >= 3)
+    //    {
+    //        DestroyImmediate(spawnedBlocks[0].gameObject, true);
+    //        spawnedBlocks.RemoveAt(0);
+    //    }
+    //}
 
     private void SpawnColletbiles()
     {
