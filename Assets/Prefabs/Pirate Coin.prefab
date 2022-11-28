@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2695678605028114092}
   - component: {fileID: 1286658055925425131}
   - component: {fileID: 7273066697097426199}
+  - component: {fileID: 4103717926856409300}
   m_Layer: 0
   m_Name: Pirate Coin
   m_TagString: Untagged
@@ -60,6 +61,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9082522, y: 2.166428, z: 0.1991272}
   m_Center: {x: -0.008359671, y: -0.040615737, z: -0.017559052}
+--- !u!95 &4103717926856409300
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324546872456143894}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5587b222c84ee4e4bbbcda6405960f4b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6767941244478338655
 GameObject:
   m_ObjectHideFlags: 0
