@@ -20,7 +20,7 @@ public class Registration : MonoBehaviour
     public FirebaseAuth auth;
     public FirebaseUser user;
 
-    //public  
+    
 
     public UnityEvent success;
 
