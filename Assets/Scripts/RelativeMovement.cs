@@ -97,14 +97,6 @@ public class RelativeMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.DownArrow) && _isGrounded)
             {
-                //if (_isDucking)
-                //{
-                //    UnDucking();
-                //}
-                //else
-                //{
-                //    Ducking();
-                //}
                 StartCoroutine(CoroDumping());
             }
 
