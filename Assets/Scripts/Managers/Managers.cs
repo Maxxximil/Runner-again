@@ -7,6 +7,7 @@ using UnityEngine;
     [RequireComponent(typeof(CoinManager))]
     [RequireComponent(typeof(DistanceManager))]
     [RequireComponent(typeof(SpeedManager))]
+    [RequireComponent(typeof(HighScoreManager))]
 
 public class Managers : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Managers : MonoBehaviour
     public static SpeedManager Speed { get; private set; }
     public static DataManager Data { get; private set; }
     public static DistanceManager Distance { get; private set; }
+    public static HighScoreManager HighScore { get; private set; }
 
 
 
@@ -27,6 +29,7 @@ public class Managers : MonoBehaviour
         Coin = GetComponent<CoinManager>();
         Speed = GetComponent<SpeedManager>();
         Distance = GetComponent<DistanceManager>();
+        HighScore = GetComponent<HighScoreManager>();
         Data = GetComponent<DataManager>();
 
 
@@ -35,6 +38,7 @@ public class Managers : MonoBehaviour
         _startSequence.Add(Coin);
         _startSequence.Add(Speed);
         _startSequence.Add(Distance);
+        _startSequence.Add(HighScore);
         _startSequence.Add(Data);
 
         StartCoroutine(StartupManagers());

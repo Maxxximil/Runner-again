@@ -25,6 +25,7 @@ public class DataManager : MonoBehaviour, IGameManager
     public void SaveGameState()
     {
         Dictionary<string, object> gamestate = new Dictionary<string, object>();
+        gamestate.Add("HighScore", Managers.HighScore.GetData());
         //gamestate.Add("score", Managers.Score.GetDataWonder());
 
         FileStream stream = File.Create(_filename);
@@ -47,7 +48,7 @@ public class DataManager : MonoBehaviour, IGameManager
         gamestate = formatter.Deserialize(stream) as Dictionary<string, object>;
         stream.Close();
 
-        
+        Managers.HighScore.UpdateData((Dictionary<string, int>)gamestate["HighScore"]);
         //Managers.Mission.UpdateData((int)gamestate["curWonder"], (int)gamestate["maxWonder"]);
         //Managers.Mission.RestartCurrent();
     }

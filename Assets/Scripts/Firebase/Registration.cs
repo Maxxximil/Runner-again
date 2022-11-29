@@ -47,7 +47,7 @@ public class Registration : MonoBehaviour
         Debug.Log("Setting up Firebase Auth");
         //Set the authentication instance object
         
-        auth = Firebase.Auth.FirebaseAuth.DefaultInstance; ;
+        auth = Firebase.Auth.FirebaseAuth.DefaultInstance; 
         
 
     }
@@ -139,6 +139,7 @@ public class Registration : MonoBehaviour
                         //Username is now set
                         //Now return to login screen
                         success.Invoke();
+                        Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
                         warningRegisterText.text = "";
                     }
                 }
