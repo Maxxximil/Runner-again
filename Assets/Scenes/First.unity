@@ -6853,8 +6853,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2123613868}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 2123613869}
+        m_TargetAssemblyTypeName: AutorizationController, Assembly-CSharp
         m_MethodName: StartButton
         m_Mode: 1
         m_Arguments:
@@ -7992,7 +7992,6 @@ MonoBehaviour:
   _scoreScreen: {fileID: 1883629797}
   _scoreScreenCoins: {fileID: 595548313}
   _scoreScreenDistance: {fileID: 1101600141}
-  _start: {fileID: 529745281}
 --- !u!114 &2123613869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8008,6 +8007,7 @@ MonoBehaviour:
   _autorizationScreen: {fileID: 463930438}
   _loginScreen: {fileID: 1725461970}
   _registrationScreen: {fileID: 1505332221}
+  _start: {fileID: 529745281}
 --- !u!114 &2123613870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8093,7 +8093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2695678605028114092, guid: 748cbd383e721f54d9107593df790591, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30
+      value: -37.68
       objectReference: {fileID: 0}
     - target: {fileID: 2695678605028114092, guid: 748cbd383e721f54d9107593df790591, type: 3}
       propertyPath: m_LocalRotation.w

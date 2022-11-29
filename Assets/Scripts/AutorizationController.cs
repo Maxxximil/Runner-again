@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+
 public class AutorizationController : MonoBehaviour
 {
     [SerializeField] private GameObject _autorizationScreen;
     [SerializeField] private GameObject _loginScreen;
     [SerializeField] private GameObject _registrationScreen;
+    [SerializeField] private GameObject _start;
+
 
     private bool _isopenAutorizationScreen = false;
     private bool _isopenLoginScreen = false;
@@ -20,22 +23,16 @@ public class AutorizationController : MonoBehaviour
         _autorizationScreen.SetActive(false);
         _loginScreen.SetActive(false);
         _registrationScreen.SetActive(false);
+        _start.SetActive(true);
+        Managers.Speed.ChangePause(false);
+
     }
 
-    private void Update()
-    {
-        //if (_isopenAutorizationScreen || _isopenLoginScreen || _isopenRegistrationScreen)
-        //{
-        //    Time.timeScale = 0;
-        //}
-        //else if (!_isopenAutorizationScreen && !_isopenLoginScreen && !_isopenRegistrationScreen ) 
-        //{
-        //    Time.timeScale = 1;
-        //}
-    }
+
 
     public void AutorizationScreen()
     {
+        _start.SetActive(false);
         if (!_isopenAutorizationScreen)
         {
             _autorizationScreen.SetActive(true);
@@ -115,5 +112,11 @@ public class AutorizationController : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+    }
+
+    public void StartButton()
+    {
+        _start.SetActive(false);
+        Managers.Speed.ChangePause(true);
     }
 }
