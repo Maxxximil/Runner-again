@@ -24,14 +24,14 @@ public class AutorizationController : MonoBehaviour
 
     private void Update()
     {
-        if (_isopenAutorizationScreen || _isopenLoginScreen || _isopenRegistrationScreen)
-        {
-            Time.timeScale = 0;
-        }
-        else if (Managers.Speed.GetData() != 0) 
-        {
-            Time.timeScale = 1;
-        }
+        //if (_isopenAutorizationScreen || _isopenLoginScreen || _isopenRegistrationScreen)
+        //{
+        //    Time.timeScale = 0;
+        //}
+        //else if (!_isopenAutorizationScreen && !_isopenLoginScreen && !_isopenRegistrationScreen ) 
+        //{
+        //    Time.timeScale = 1;
+        //}
     }
 
     public void AutorizationScreen()
@@ -50,6 +50,8 @@ public class AutorizationController : MonoBehaviour
             _loginScreen.SetActive(false);
             _isopenLoginScreen = false;
         }
+        Check();
+
     }
 
     public void LoginScreen()
@@ -74,6 +76,8 @@ public class AutorizationController : MonoBehaviour
             _autorizationScreen.SetActive(true);
             _isopenAutorizationScreen = true;
         }
+        Check();
+
     }
 
     public void RegistrationScreen()
@@ -98,6 +102,18 @@ public class AutorizationController : MonoBehaviour
             _autorizationScreen.SetActive(true);
             _isopenAutorizationScreen = true;
         }
+        Check();
     }
-
+    
+    private void Check()
+    {
+        if (_isopenAutorizationScreen || _isopenLoginScreen || _isopenRegistrationScreen)
+        {
+            Time.timeScale = 0;
+        }
+        else if (!_isopenAutorizationScreen && !_isopenLoginScreen && !_isopenRegistrationScreen)
+        {
+            Time.timeScale = 1;
+        }
+    }
 }

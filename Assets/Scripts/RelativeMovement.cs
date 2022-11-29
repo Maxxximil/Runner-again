@@ -164,7 +164,8 @@ public class RelativeMovement : MonoBehaviour
             Messenger.Broadcast("GAME_OVER");  
             _animator.SetBool("Run", false);
             Managers.Speed.UpdateData(0f);
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
+            Managers.Speed.ChangePause(false);
         }
     }
 

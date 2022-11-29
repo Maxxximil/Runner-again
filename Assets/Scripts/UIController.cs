@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _scoreScreen;
     [SerializeField] private Text _scoreScreenCoins;
     [SerializeField] private Text _scoreScreenDistance;
+    [SerializeField] private GameObject _start;
 
     private void Awake()
     {
@@ -31,6 +32,9 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         _scoreScreen.SetActive(false);
+        _start.SetActive(true);
+        Managers.Speed.ChangePause(false);
+        //Time.timeScale = 0;
         OnAddCoins();
         OnAddDistance();
     }
@@ -54,13 +58,21 @@ public class UIController : MonoBehaviour
 
     public void NewGame()
     {
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
+        Managers.Speed.ChangePause(true);
         SceneManager.LoadScene("First");
     }
 
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void StartButton()
+    {
+        _start.SetActive(false);
+        Managers.Speed.ChangePause(true);
+        //Time.timeScale = 1;
     }
 
 }

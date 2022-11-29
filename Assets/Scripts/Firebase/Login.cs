@@ -72,6 +72,11 @@ public class Login : MonoBehaviour
         auth = null;
     }
 
+    public void OnSignOut()
+    {
+        auth.SignOut();
+        Debug.Log("Calling SignOut");
+    }
 
     public void LogInButton()
     {

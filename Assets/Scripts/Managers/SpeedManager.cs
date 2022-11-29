@@ -7,6 +7,7 @@ public class SpeedManager : MonoBehaviour, IGameManager
     public ManagerStatus status { get; private set; }
 
     private float _speed;
+    private bool _isPaused;
 
     private NetworkService _network;
 
@@ -15,6 +16,7 @@ public class SpeedManager : MonoBehaviour, IGameManager
         Debug.Log("Distance manager starting...");
 
         _network = service;
+        _isPaused = false;
         _speed = 10f;
 
         status = ManagerStatus.Started;
@@ -33,5 +35,18 @@ public class SpeedManager : MonoBehaviour, IGameManager
     public void AddSpeed(float value)
     {
         _speed += value;
+    }
+
+    public void ChangePause( bool var)
+    {
+        _isPaused = var;
+        if (_isPaused)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
     }
 }

@@ -46,32 +46,16 @@ public class Registration : MonoBehaviour
     {
         Debug.Log("Setting up Firebase Auth");
         //Set the authentication instance object
-        //auth = FirebaseAuth.DefaultInstance;
+        
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance; ;
-        auth.StateChanged += AuthStateChanged;
-        AuthStateChanged(this, null);
+        
 
     }
-    void AuthStateChanged(object sender, System.EventArgs eventArgs)
-    {
-        if (auth.CurrentUser != user)
-        {
-            bool signedIn = user != auth.CurrentUser && auth.CurrentUser != null;
-            if (!signedIn && user != null)
-            {
-                Debug.Log("Signed out " + user.UserId);
-            }
-            user = auth.CurrentUser;
-            if (signedIn)
-            {
-                Debug.Log("Signed in " + user.UserId);
-            }
-        }
-    }
+
 
     void OnDestroy()
     {
-        auth.StateChanged -= AuthStateChanged;
+       
         auth = null;
     }
 
