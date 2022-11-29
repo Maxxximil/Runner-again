@@ -24,11 +24,11 @@ public class AutorizationController : MonoBehaviour
 
     private void Update()
     {
-        if(_isopenAutorizationScreen || _isopenLoginScreen || _isopenRegistrationScreen)
+        if (_isopenAutorizationScreen || _isopenLoginScreen || _isopenRegistrationScreen)
         {
             Time.timeScale = 0;
         }
-        else
+        else if (Managers.Speed.GetData() != 0) 
         {
             Time.timeScale = 1;
         }

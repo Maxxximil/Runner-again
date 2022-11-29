@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obs_1
       objectReference: {fileID: 0}
+    - target: {fileID: 3197647031997140183, guid: 1d274031ff224764d8cdbf3e39253a90, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d274031ff224764d8cdbf3e39253a90, type: 3}
 --- !u!114 &1400903 stripped
