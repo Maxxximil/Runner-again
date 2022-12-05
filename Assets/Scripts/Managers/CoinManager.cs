@@ -24,6 +24,7 @@ public class CoinManager : MonoBehaviour, IGameManager
     
     public void AddCoins(string name, int value)
     {
+
         Managers.Data.LoadGameState();
         if (_numCoins.ContainsKey(name))
         {

@@ -10,8 +10,8 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private Text _scoreDistance;
     [SerializeField] private GameObject _scoreScreen;
-    [SerializeField] private Text _scoreScreenCoins;
-    [SerializeField] private Text _scoreScreenDistance;
+    //[SerializeField] private Text _scoreScreenCoins;
+    //[SerializeField] private Text _scoreScreenDistance;
     //[SerializeField] private Text _highScore;
     //[SerializeField] private Text _userName;
     //[SerializeField] private Text _scoreCoins;
@@ -57,8 +57,6 @@ public class UIController : MonoBehaviour
     private void OnGameOver()
     {
         _scoreScreen.SetActive(true);
-        _scoreScreenCoins.text = "Score: " + Managers.Coin.GetCoins(Managers.Auth.GetUser());
-        _scoreScreenDistance.text = "Distance: " + Managers.Distance.GetData();
     }
 
     public void NewGame()
@@ -69,6 +67,11 @@ public class UIController : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void Reset()
+    {
+        Managers.Data.NewGame();
     }
 
     //public void ShowHighScore()
