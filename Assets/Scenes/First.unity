@@ -6217,6 +6217,7 @@ GameObject:
   - component: {fileID: 1316699527}
   - component: {fileID: 1316699528}
   - component: {fileID: 1316699529}
+  - component: {fileID: 1316699530}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -6314,6 +6315,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2772ffb8933eac84bbce611571456688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1316699530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316699523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fd16b71b9dddb4cb8a013ef60067dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dbPath: Data base/One of them
 --- !u!114 &1340975200 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8636009382060811546, guid: 2c66f7f14898eb64da2ada1a90ea6981, type: 3}
@@ -9548,9 +9562,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2123613868}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: Reset
+      - m_Target: {fileID: 1316699530}
+        m_TargetAssemblyTypeName: FirestoreDB, Assembly-CSharp
+        m_MethodName: InitializeUser
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

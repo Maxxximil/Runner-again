@@ -35,6 +35,7 @@ public class DataManager : MonoBehaviour, IGameManager
         BinaryFormatter formatter = new BinaryFormatter();
         formatter.Serialize(stream, gamestate);
         stream.Close();
+
     }
 
     public void LoadGameState()
