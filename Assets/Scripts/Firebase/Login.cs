@@ -21,7 +21,7 @@ public class Login : MonoBehaviour
 
     public UnityEvent success;
 
-    void Awake()
+    public void Awake()
     {
         //Check that all of the necessary dependencies for Firebase are present on the system
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
@@ -37,6 +37,7 @@ public class Login : MonoBehaviour
                 Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
             }
         });
+
     }
 
     private void InitializeFirebase()
@@ -57,24 +58,26 @@ public class Login : MonoBehaviour
             if (!signedIn && user != null)
             {
                 Debug.Log("Signed out " + user.UserId);
-                Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
+                //Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
 
             }
             user = auth.CurrentUser;
             if (signedIn)
             {
                 Debug.Log("Signed in " + user.UserId);
+                Debug.Log("Signed in " + user.DisplayName);
+                Debug.Log("Signed in " + user.Email);
                 Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
 
             }
         }
     }
 
-    void OnDestroy()
-    {
-        auth.StateChanged -= AuthStateChanged;
-        auth = null;
-    }
+    //void OnDestroy()
+    //{
+    //    auth.StateChanged -= AuthStateChanged;
+    //    auth = null;
+    //}
 
     public void OnSignOut()
     {

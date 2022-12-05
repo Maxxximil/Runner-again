@@ -17,7 +17,7 @@ public class SpeedManager : MonoBehaviour, IGameManager
 
         _network = service;
         _isPaused = false;
-        _speed = 10f;
+        _speed = 0;
 
         status = ManagerStatus.Started;
     }

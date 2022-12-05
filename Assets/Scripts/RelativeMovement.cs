@@ -30,7 +30,8 @@ public class RelativeMovement : MonoBehaviour
 
     private bool _isDucking;
 
-
+    private Vector2 startTouchPosition;
+    private Vector2 endTouchPosition;
 
     private void Start()
     {
@@ -41,12 +42,14 @@ public class RelativeMovement : MonoBehaviour
 
         _moveSpeed = Managers.Speed.GetData(); 
 
-        _animator.SetBool("Run", true);
+        _animator.SetBool("Run", false);
+        _animator.SetFloat("RunSpeed", Managers.Speed.GetData());
     }
 
     private void Update()
     {
-        if(Time.timeScale != 0)
+        _animator.SetFloat("RunSpeed", Managers.Speed.GetData());
+        if (Time.timeScale != 0)
         {
             _moveSpeed = Managers.Speed.GetData();
             Vector3 movement = new Vector3(0, 0, _moveSpeed);
@@ -60,6 +63,62 @@ public class RelativeMovement : MonoBehaviour
             middleborder = transform.TransformDirection(middleborder);
 
             _charController.Move(movement);
+
+            if(Input.touchCount>0 &&Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                startTouchPosition = Input.GetTouch(0).position;
+            }
+
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+            {
+                endTouchPosition = Input.GetTouch(0).position;
+                if (Mathf.Abs(startTouchPosition.x - endTouchPosition.x) > Mathf.Abs(startTouchPosition.y - endTouchPosition.y)) 
+                {
+                    if (endTouchPosition.x > startTouchPosition.x)
+                    {
+                        if (_charController.transform.position.x != rightborder.x && _charController.transform.position.x == middleborder.x)
+                        {
+                            StartCoroutine(CoroMoveRight());
+                        }
+
+                        if (_charController.transform.position.x != rightborder.x && _charController.transform.position.x == leftborder.x)
+                        {
+                            StartCoroutine(CoroMoveRight());
+                        }
+                    }
+                    if (endTouchPosition.x < startTouchPosition.x)
+                    {
+                        if (_charController.transform.position.x != leftborder.x && _charController.transform.position.x == middleborder.x)
+                        {
+                            StartCoroutine(CoroMoveLeft());
+                        }
+
+                        if (_charController.transform.position.x != leftborder.x && _charController.transform.position.x == rightborder.x)
+                        {
+                            StartCoroutine(CoroMoveLeft());
+                        }
+                    }
+                }
+                if (Mathf.Abs(startTouchPosition.x - endTouchPosition.x) < Mathf.Abs(startTouchPosition.y - endTouchPosition.y))
+                {
+                    if (endTouchPosition.y > startTouchPosition.y && _isGrounded)
+                    {
+                        if (_isDucking)
+                        {
+                            UnDucking();
+                        }
+                        _forceDown = -15;
+                        _animator.SetBool("Jump", true);
+                    }
+
+                    if (endTouchPosition.y < startTouchPosition.y && _isGrounded)
+                    {
+                        StartCoroutine(CoroDumping());
+                    }
+                }
+
+            }
+
 
             if (Input.GetKeyDown(KeyCode.LeftArrow) && _charController.transform.position.x != leftborder.x
                 && _charController.transform.position.x == middleborder.x)
@@ -114,6 +173,19 @@ public class RelativeMovement : MonoBehaviour
             {
                 _animator.SetBool("Jump", false);
             }
+        }
+    }
+
+    private void MoveLeft(Vector3 leftborder, Vector3 rightborder, Vector3 middleborder)
+    {
+        if (_charController.transform.position.x != leftborder.x && _charController.transform.position.x == middleborder.x)
+        {
+            StartCoroutine(CoroMoveLeft());
+        }
+
+        if (_charController.transform.position.x != leftborder.x && _charController.transform.position.x == rightborder.x)
+        {
+            StartCoroutine(CoroMoveLeft());
         }
     }
 

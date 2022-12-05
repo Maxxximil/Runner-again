@@ -8,7 +8,7 @@ public class CurrentUserSession : MonoBehaviour
 {
     [SerializeField] private Text _userName;
 
-    private void Start()
+    private void Awake()
     {
         Messenger<string>.AddListener("USER_NAME", DisplayUser);
     }
@@ -19,20 +19,21 @@ public class CurrentUserSession : MonoBehaviour
 
     }
 
-    private void OnDisable()
-    {
-        Messenger<string>.RemoveListener("USER_NAME", DisplayUser);
+    //private void OnDisable()
+    //{
+    //    Messenger<string>.RemoveListener("USER_NAME", DisplayUser);
 
-    }
+    //}
 
-    private void OnEnable()
-    {
-        Messenger<string>.AddListener("USER_NAME", DisplayUser);
+    //private void OnEnable()
+    //{
+    //    Messenger<string>.AddListener("USER_NAME", DisplayUser);
 
-    }
+    //}
 
     private void DisplayUser(string name)
     {
+        Debug.Log("Name: " + name);
         _userName.text = name;
     }
 

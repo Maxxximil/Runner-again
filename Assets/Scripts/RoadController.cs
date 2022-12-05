@@ -18,8 +18,9 @@ public class RoadController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        _speed = Managers.Speed.GetData();
         if(_speed != 0)
-        {          
+        {         
             _speed = Managers.Speed.GetData();
             _distance = (int)(_speed * time);
             Managers.Distance.AddDistance(_distance);

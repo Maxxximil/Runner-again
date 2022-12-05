@@ -6,7 +6,8 @@ public class CoinManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }
 
-    private int _numCoins { get; set; }
+    //private int _numCoins { get; set; }
+    private Dictionary<string, int> _numCoins;
 
     private NetworkService _network;
 
@@ -15,23 +16,37 @@ public class CoinManager : MonoBehaviour, IGameManager
         Debug.Log("Coin manager starting...");
 
         _network = service;
-        _numCoins = 0;
+        UpdateData(new Dictionary<string, int>());
 
         status = ManagerStatus.Started;
     }
 
     
-    public void AddCoins(int value)
+    public void AddCoins(string name, int value)
     {
-        _numCoins += value;
+        Managers.Data.LoadGameState();
+        if (_numCoins.ContainsKey(name))
+        {
+            _numCoins[name] += value;
+        }
+        else
+        {
+            _numCoins.Add(name, Managers.Distance.GetData());
+        }
+        Managers.Data.SaveGameState();
     }
 
-    public int GetCoins()
+    public int GetCoins(string name)
+    {
+        return _numCoins[name];
+    }
+
+    public Dictionary<string,int> GetData()
     {
         return _numCoins;
     }
 
-    public void UpdateData(int value)
+    public void UpdateData(Dictionary<string, int> value)
     {
         _numCoins = value;
     }

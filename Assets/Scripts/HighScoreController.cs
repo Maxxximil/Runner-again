@@ -25,9 +25,9 @@ public class HighScoreController : MonoBehaviour
     }
     private void ChangeHighScore()
     {
-        _newHighScore = new Dictionary<string, int>();
-        _newHighScore.Add(_name, Managers.Distance.GetData());
-        Managers.HighScore.AddHighScore(_newHighScore, _name);
+        //_newHighScore = new Dictionary<string, int>();
+        //_newHighScore.Add(_name, Managers.Distance.GetData());
+        Managers.HighScore.AddHighScore(_name);
     }
 
     private void ChangeName(string name)
