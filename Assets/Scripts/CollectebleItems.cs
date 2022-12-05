@@ -10,7 +10,7 @@ public class CollectebleItems : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Managers.Coin.AddCoins(1);
+        //Managers.Coin.AddCoins(1);
         Destroy(this.gameObject);
         Messenger.Broadcast("ADD_COINS");
     }

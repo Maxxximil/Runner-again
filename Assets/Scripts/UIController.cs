@@ -8,37 +8,46 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private Text _scoreCoins;
     [SerializeField] private Text _scoreDistance;
     [SerializeField] private GameObject _scoreScreen;
     [SerializeField] private Text _scoreScreenCoins;
     [SerializeField] private Text _scoreScreenDistance;
+    //[SerializeField] private Text _highScore;
+    //[SerializeField] private Text _userName;
+    //[SerializeField] private Text _scoreCoins;
 
+
+
+    //private string _name;
     private void Awake()
     {
-        Messenger.AddListener(GameEvent.ADD_COINS, OnAddCoins);
+        //Messenger.AddListener(GameEvent.ADD_COINS, OnAddCoins);
         Messenger.AddListener(GameEvent.ADD_DISTANCE, OnAddDistance);
         Messenger.AddListener(GameEvent.GAME_OVER, OnGameOver);
+       // Messenger<string>.AddListener(GameEvent.USER_NAME, DisplayUser);
+        Debug.Log("UI Add listeners");
     }
 
     private void OnDestroy()
     {
-        Messenger.RemoveListener(GameEvent.ADD_COINS, OnAddCoins);
+       // Messenger.RemoveListener(GameEvent.ADD_COINS, OnAddCoins);
         Messenger.RemoveListener(GameEvent.ADD_DISTANCE, OnAddDistance);
         Messenger.RemoveListener(GameEvent.GAME_OVER, OnGameOver);
+        //Messenger<string>.RemoveListener(GameEvent.USER_NAME, DisplayUser);
+
+
     }
 
     private void Start()
     {
         _scoreScreen.SetActive(false);
-        OnAddCoins();
-        OnAddDistance();
     }
 
-    private void OnAddCoins()
-    {
-        _scoreCoins.text = ": " + Managers.Coin.GetCoins();
-    }
+    //private void OnAddCoins()
+    //{
+    //    Managers.Coin.AddCoins(_name, 1);
+    //    _scoreCoins.text = ": " + Managers.Coin.GetCoins(_name);
+    //}
 
     private void OnAddDistance()
     {
@@ -48,13 +57,12 @@ public class UIController : MonoBehaviour
     private void OnGameOver()
     {
         _scoreScreen.SetActive(true);
-        _scoreScreenCoins.text = "Score: " + Managers.Coin.GetCoins();
+        _scoreScreenCoins.text = "Score: " + Managers.Coin.GetCoins(Managers.Auth.GetUser());
         _scoreScreenDistance.text = "Distance: " + Managers.Distance.GetData();
     }
 
     public void NewGame()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene("First");
     }
 
@@ -62,5 +70,40 @@ public class UIController : MonoBehaviour
     {
         Application.Quit();
     }
+
+    //public void ShowHighScore()
+    //{
+    //    _highScore.text = "Your highscore: " + _name;//+ Managers.HighScore.GetDataScore(_name);
+    //}
+
+    //public void ShowUserName()
+    //{
+    //    _userName.text = _name;
+    //}
+
+    //public void ShowCoins()
+    //{
+    //    _scoreCoins.text = ": " + _name;//+ Managers.Coin.GetCoins(_name);
+    //}
+
+    //private void ShowAll()
+    //{
+    //    _highScore.text = "Your highscore: " + _name;//+ Managers.HighScore.GetDataScore(_name);
+    //    _userName.text = _name;
+    //    _scoreCoins.text = ": " + _name;//+ Managers.Coin.GetCoins(_name);
+
+    //}
+
+    //private void DisplayUser(string name)
+    //{
+    //    _name = name;
+    //    Debug.Log("Name: " + _name);
+    //    ShowAll();
+    //    //ShowHighScore();
+    //    //ShowUserName();
+    //    //ShowCoins();
+    //}
+
+
 
 }
