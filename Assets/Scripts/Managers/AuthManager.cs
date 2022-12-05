@@ -7,6 +7,7 @@ using Firebase.Auth;
 public class AuthManager : MonoBehaviour, IGameManager
 {
     private string _curUser;
+    private string _curID;
 
     public ManagerStatus status { get; private set; }
 
@@ -19,6 +20,7 @@ public class AuthManager : MonoBehaviour, IGameManager
         _network = service;
 
         _curUser = "Default";
+        _curID = "Default";
 
         status = ManagerStatus.Started;
     }
@@ -28,12 +30,19 @@ public class AuthManager : MonoBehaviour, IGameManager
         return _curUser;
     }
 
+    public string GetID()
+    {
+        return _curID;
+    }
+
     public void ChangeUser(string newName)
     {
         _curUser = newName;
-        Debug.Log("AuthManager");
-        //Messenger.Broadcast(GameEvent.USER_NAME);
     }
 
+    public void ChangeID(string newID)
+    {
+        _curID = newID;
+    }
    
 }

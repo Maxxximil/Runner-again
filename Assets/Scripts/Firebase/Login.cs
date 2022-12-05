@@ -14,7 +14,9 @@ public class Login : MonoBehaviour
     [SerializeField] private TMP_InputField _inputEmail;
     [SerializeField] private TMP_InputField _inputPassword;
     [SerializeField] private Text warningLoginText;
-
+    [SerializeField] private TMP_InputField _inputEmailForMerge;
+    [SerializeField] private TMP_InputField _inputPasswordForMerge;
+    [SerializeField] private TMP_InputField _inputNameForMerge;
     public DependencyStatus dependencyStatus;
     public FirebaseAuth auth;
     public FirebaseUser user;
@@ -59,6 +61,7 @@ public class Login : MonoBehaviour
             {
                 Debug.Log("Signed out " + user.UserId);
                 Managers.Auth.ChangeUser("Guest");
+                Managers.Auth.ChangeID("Guest");
                 //Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
 
             }
@@ -69,6 +72,8 @@ public class Login : MonoBehaviour
                 Debug.Log("Signed in " + user.DisplayName);
                 Debug.Log("Signed in " + user.Email);
                 Managers.Auth.ChangeUser(user.DisplayName);
+                Managers.Auth.ChangeID(user.UserId);
+
                 //Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
 
             }
@@ -136,8 +141,58 @@ public class Login : MonoBehaviour
             warningLoginText.text = "";
             warningLoginText.text = "Logged In";
             Managers.Auth.ChangeUser(user.DisplayName);
+            Managers.Auth.ChangeID(user.UserId);
             //Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
             //success.Invoke();
         }
+    }
+
+    public void LogInAnon()
+    {
+        auth.SignInAnonymouslyAsync().ContinueWith(task => {
+            if (task.IsCanceled)
+            {
+                Debug.LogError("SignInAnonymouslyAsync was canceled.");
+                return;
+            }
+            if (task.IsFaulted)
+            {
+                Debug.LogError("SignInAnonymouslyAsync encountered an error: " + task.Exception);
+                return;
+            }
+
+            Firebase.Auth.FirebaseUser newUser = task.Result;
+            Debug.LogFormat("User signed in successfully: {0} ({1})",
+                newUser.DisplayName, newUser.UserId);
+            Managers.Auth.ChangeUser("Anon");
+            Managers.Auth.ChangeID(newUser.UserId);
+        });
+    }
+
+    public void MergeAccounts()
+    {
+        Firebase.Auth.Credential credential =
+        Firebase.Auth.EmailAuthProvider.GetCredential(_inputEmailForMerge.text, _inputPasswordForMerge.text);
+        auth.CurrentUser.LinkWithCredentialAsync(credential).ContinueWith(task => {
+            if (task.IsCanceled)
+            {
+                Debug.LogError("LinkWithCredentialAsync was canceled.");
+                return;
+            }
+            if (task.IsFaulted)
+            {
+                Debug.LogError("LinkWithCredentialAsync encountered an error: " + task.Exception);
+                return;
+            }
+
+            Firebase.Auth.FirebaseUser newUser = task.Result;
+            Debug.LogFormat("Credentials successfully linked to Firebase user: {0} ({1})",
+                newUser.DisplayName, newUser.UserId);
+            UserProfile profile = new UserProfile { DisplayName = _inputNameForMerge.text };
+            var ProfileTask = user.UpdateUserProfileAsync(profile);
+            Managers.Auth.ChangeID(newUser.UserId);
+            Managers.Auth.ChangeUser(newUser.DisplayName);
+        });
+
     }
 }

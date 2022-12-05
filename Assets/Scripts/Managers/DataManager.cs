@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
+
 
 public class DataManager : MonoBehaviour, IGameManager
 {
@@ -55,5 +57,12 @@ public class DataManager : MonoBehaviour, IGameManager
         //Managers.Mission.RestartCurrent();
     }
 
-    
+    public void NewGame()
+    {
+        Managers.Coin.UpdateData(new Dictionary<string, int>());
+        Managers.HighScore.UpdateData(new Dictionary<string, int>());
+        SaveGameState();
+        SceneManager.LoadScene("First");
+    }
+
 } 

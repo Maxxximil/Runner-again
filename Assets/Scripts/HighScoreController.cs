@@ -25,7 +25,7 @@ public class HighScoreController : MonoBehaviour
     //}
     private void ChangeHighScore()
     {
-        _name = Managers.Auth.GetUser();
+        _name = Managers.Auth.GetID();
         Managers.HighScore.AddHighScore(_name);
     }
 
