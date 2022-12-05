@@ -16,9 +16,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        Managers.Coin.UpdateData(0);
         Managers.Distance.UpdateData(0);
-        Managers.Speed.UpdateData(10);
         spawnedChanks.Add(FirstChunk);
         
     }
