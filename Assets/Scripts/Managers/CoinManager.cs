@@ -31,14 +31,18 @@ public class CoinManager : MonoBehaviour, IGameManager
         }
         else
         {
-            _numCoins.Add(name, Managers.Distance.GetData());
+            _numCoins.Add(name, value);
         }
         Managers.Data.SaveGameState();
     }
 
     public int GetCoins(string name)
     {
-        return _numCoins[name];
+        if (_numCoins.ContainsKey(name))
+        {
+            return _numCoins[name];
+        }
+        return 0;
     }
 
     public Dictionary<string,int> GetData()

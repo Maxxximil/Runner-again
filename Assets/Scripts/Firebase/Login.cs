@@ -58,6 +58,7 @@ public class Login : MonoBehaviour
             if (!signedIn && user != null)
             {
                 Debug.Log("Signed out " + user.UserId);
+                Managers.Auth.ChangeUser("Guest");
                 //Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
 
             }
@@ -67,7 +68,8 @@ public class Login : MonoBehaviour
                 Debug.Log("Signed in " + user.UserId);
                 Debug.Log("Signed in " + user.DisplayName);
                 Debug.Log("Signed in " + user.Email);
-                Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
+                Managers.Auth.ChangeUser(user.DisplayName);
+                //Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
 
             }
         }
@@ -83,7 +85,6 @@ public class Login : MonoBehaviour
     {
         auth.SignOut();
         Debug.Log("Calling SignOut");
-        Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
     }
 
     public void LogInButton()
@@ -134,7 +135,8 @@ public class Login : MonoBehaviour
             Debug.LogFormat("User signed in successfully: {0} ({1})", user.DisplayName, user.Email);
             warningLoginText.text = "";
             warningLoginText.text = "Logged In";
-            Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
+            Managers.Auth.ChangeUser(user.DisplayName);
+            //Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
             //success.Invoke();
         }
     }

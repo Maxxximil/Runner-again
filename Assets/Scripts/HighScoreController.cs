@@ -4,34 +4,33 @@ using UnityEngine;
 
 public class HighScoreController : MonoBehaviour
 {
-    private Dictionary<string, int> _newHighScore;
-    private string _name;
+    //private Dictionary<string, int> _newHighScore;
+    private string _name = "Default";
 
     private void Awake()
     {
         Messenger.AddListener(GameEvent.GAME_OVER, ChangeHighScore);
-        Messenger<string>.AddListener(GameEvent.USER_NAME, ChangeName);
+        //Messenger<string>.AddListener(GameEvent.USER_NAME, ChangeName);
     }
 
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.GAME_OVER, ChangeHighScore);
-        Messenger<string>.RemoveListener(GameEvent.USER_NAME, ChangeName);
+        //Messenger<string>.RemoveListener(GameEvent.USER_NAME, ChangeName);
     }
 
-    private void Start()
-    {
-        Managers.Data.LoadGameState();
-    }
+    //private void Start()
+    //{
+    //    Managers.Data.LoadGameState();
+    //}
     private void ChangeHighScore()
     {
-        //_newHighScore = new Dictionary<string, int>();
-        //_newHighScore.Add(_name, Managers.Distance.GetData());
+        _name = Managers.Auth.GetUser();
         Managers.HighScore.AddHighScore(_name);
     }
 
-    private void ChangeName(string name)
-    {
-        _name = name;
-    }
+    //private void ChangeName(string name)
+    //{
+    //    _name = name;
+    //}
 }

@@ -6,9 +6,7 @@ using Firebase.Auth;
 
 public class AuthManager : MonoBehaviour, IGameManager
 {
-    [SerializeField] private Facebookauth facebookauth;
-    [SerializeField] private Login login;
-    [SerializeField] private Registration registration;
+    private string _curUser;
 
     public ManagerStatus status { get; private set; }
 
@@ -20,28 +18,22 @@ public class AuthManager : MonoBehaviour, IGameManager
 
         _network = service;
 
-        //facebookauth.Launch();
-        //registration.Launch();
-        //login.Launch();
-        
+        _curUser = "Default";
+
         status = ManagerStatus.Started;
     }
 
-    public void FacebookButton()
+    public string GetUser()
     {
-        facebookauth.Facebook_Login();
-    }
-    public void LoginButton()
-    {
-        login.LogInButton();
+        return _curUser;
     }
 
-    public void SignOut()
+    public void ChangeUser(string newName)
     {
-        login.OnSignOut();
+        _curUser = newName;
+        Debug.Log("AuthManager");
+        //Messenger.Broadcast(GameEvent.USER_NAME);
     }
-    public void RegisterButton()
-    {
-        registration.RegistrarionButton();
-    }
+
+   
 }

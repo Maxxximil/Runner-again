@@ -138,8 +138,9 @@ public class Registration : MonoBehaviour
                     {
                         //Username is now set
                         //Now return to login screen
+                        Managers.Auth.ChangeUser(user.DisplayName);
                         success.Invoke();
-                        Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
+                        //Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
                         warningRegisterText.text = "";
                     }
                 }

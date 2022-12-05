@@ -30,7 +30,7 @@ public class HighScoreManager : MonoBehaviour, IGameManager
 
     public int GetDataScore(string name)
     {
-        if(_highScore != null)
+        if (_highScore.ContainsKey(name))
         {
             return _highScore[name];
 
@@ -42,23 +42,6 @@ public class HighScoreManager : MonoBehaviour, IGameManager
     {
         _highScore = var;
     }
-
-    //public void AddHighScore(Dictionary<string, int> var, string name)
-    //{
-        
-    //    if (_highScore.ContainsKey(name))
-    //    {
-    //        if (_highScore[name] < var[name])
-    //        {
-    //            _highScore[name] = var[name];
-    //        }
-    //    }
-    //    else
-    //    {
-    //        _highScore.Add(name, var[name]);
-    //    }
-    //    Managers.Data.SaveGameState();
-    //}
 
     public void AddHighScore(string name)
     {
@@ -77,15 +60,5 @@ public class HighScoreManager : MonoBehaviour, IGameManager
         Managers.Data.SaveGameState();
     }
 
-    //public void ShowHighScores(string name)
-    //{
-
-    //    if (_highScore.ContainsKey(name))
-    //    {
-    //        Debug.Log(name + " : " + _highScore[name]);
-
-    //    }
-
-
-    //}
+   
 }
