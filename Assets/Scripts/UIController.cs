@@ -10,32 +10,21 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private Text _scoreDistance;
     [SerializeField] private GameObject _scoreScreen;
-    //[SerializeField] private Text _scoreScreenCoins;
-    //[SerializeField] private Text _scoreScreenDistance;
-    //[SerializeField] private Text _highScore;
-    //[SerializeField] private Text _userName;
-    //[SerializeField] private Text _scoreCoins;
+    
 
 
 
-    //private string _name;
+    
     private void Awake()
-    {
-        //Messenger.AddListener(GameEvent.ADD_COINS, OnAddCoins);
+    {        
         Messenger.AddListener(GameEvent.ADD_DISTANCE, OnAddDistance);
         Messenger.AddListener(GameEvent.GAME_OVER, OnGameOver);
-       // Messenger<string>.AddListener(GameEvent.USER_NAME, DisplayUser);
-        Debug.Log("UI Add listeners");
     }
 
     private void OnDestroy()
     {
-       // Messenger.RemoveListener(GameEvent.ADD_COINS, OnAddCoins);
         Messenger.RemoveListener(GameEvent.ADD_DISTANCE, OnAddDistance);
         Messenger.RemoveListener(GameEvent.GAME_OVER, OnGameOver);
-        //Messenger<string>.RemoveListener(GameEvent.USER_NAME, DisplayUser);
-
-
     }
 
     private void Start()
@@ -43,11 +32,6 @@ public class UIController : MonoBehaviour
         _scoreScreen.SetActive(false);
     }
 
-    //private void OnAddCoins()
-    //{
-    //    Managers.Coin.AddCoins(_name, 1);
-    //    _scoreCoins.text = ": " + Managers.Coin.GetCoins(_name);
-    //}
 
     private void OnAddDistance()
     {
