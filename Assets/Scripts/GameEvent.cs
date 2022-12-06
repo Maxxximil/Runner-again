@@ -9,4 +9,5 @@ public static class GameEvent
     public const string GAME_OVER = "GAME_OVER";
     public const string USER_NAME = "USER_NAME";
     public const string USER_ID = "USER_ID";
+    public const string SHOW_ALL = "SHOW_ALL";
 }

@@ -30,12 +30,15 @@ public class AutorizationController : MonoBehaviour
     private void Awake()
     {
         Messenger.AddListener(GameEvent.ADD_COINS, OnAddCoins);
+        Messenger.AddListener(GameEvent.SHOW_ALL, DisplayUser);
         Managers.Data.LoadGameState();
     }
 
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.ADD_COINS, OnAddCoins);
+        Messenger.RemoveListener(GameEvent.SHOW_ALL, DisplayUser);
+
     }
 
 

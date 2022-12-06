@@ -43,6 +43,19 @@ public class HighScoreManager : MonoBehaviour, IGameManager
         _highScore = var;
     }
 
+    public void UpdateHighScore(string id, int value)
+    {
+        if (_highScore.ContainsKey(id))
+        {
+            _highScore[id] = value;
+        }
+        else
+        {
+            _highScore.Add(id, value);
+        }
+        Managers.Data.SaveGameState();
+    }
+
     public void AddHighScore(string name)
     {
         Managers.Data.LoadGameState();

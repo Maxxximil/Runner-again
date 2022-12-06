@@ -37,6 +37,19 @@ public class CoinManager : MonoBehaviour, IGameManager
         Managers.Data.SaveGameState();
     }
 
+    public void UpdateCoins(string id, int value)
+    {
+        if (_numCoins.ContainsKey(id))
+        {
+            _numCoins[id] = value;
+        }
+        else
+        {
+            _numCoins.Add(id, value);
+        }
+        Managers.Data.SaveGameState();
+    }
+
     public int GetCoins(string name)
     {
         if (_numCoins.ContainsKey(name))

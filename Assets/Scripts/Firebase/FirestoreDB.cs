@@ -13,25 +13,7 @@ public class FirestoreDB : MonoBehaviour
     FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
     public FirebaseAuth _auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
 
-    //public string Name;
-    //public string ID;
-    //public string Coins;
-    //public string HighScore;
 
-    //public void SaveInDataBase()
-    //{
-    //    var UserData = new UserData
-    //    {
-    //        Name = Managers.Auth.GetUser(),
-    //        ID = Managers.Auth.GetID(),
-    //        Coins = Managers.Coin.GetCoins(Managers.Auth.GetUser()),
-    //        HighScore = Managers.HighScore.GetDataScore(Managers.Auth.GetUser())
-
-    //    };
-
-    //    var firesore = FirebaseFirestore.DefaultInstance;
-    //    firesore.Document(_dbPath).SetAsync(UserData);
-    //}
 
 
     public void InitializeUser()
@@ -48,62 +30,19 @@ public class FirestoreDB : MonoBehaviour
             Coins = Managers.Coin.GetCoins(Managers.Auth.GetID()),
             HighScore = Managers.HighScore.GetDataScore(Managers.Auth.GetID())
         };
+        Debug.Log("Name: " + userData.Name);
+        Debug.Log("ID: " + userData.ID);
+        Debug.Log("Coins: " + userData.Coins);
+        Debug.Log("HighScore: " + userData.HighScore);
 
-
-        DocumentReference scoreRef = db.Collection("/users").Document(_auth.CurrentUser.UserId);
+        DocumentReference scoreRef = db.Collection("users").Document(_auth.CurrentUser.UserId);
         scoreRef.SetAsync(userData).ContinueWithOnMainThread(task =>
         {
             Debug.Log("Initialized user");
         });
 
     }
-    //public void UpdateCurrency(int newCurrency)
-    //{
-    //    if (_auth.CurrentUser == null)
-    //    {
-    //        Debug.LogError("UnAutherized user");
-    //        return;
-    //    }
-    //    Dictionary<string, object> currency = new Dictionary<string, object>
-    //     {
-    //         {"currency", newCurrency},
-    //     };
-    //    DocumentReference currencyRef = db.Collection("users").Document(_auth.CurrentUser.UserId);
 
-    //    currencyRef.UpdateAsync(currency).ContinueWithOnMainThread(task =>
-    //    {
-    //        Debug.Log("Updated Currency");
-    //    });
-
-    //}
-
-
-
-
-
-
-
-    //public void UpdateScore(int newScore)
-    //{
-    //    if (_auth.CurrentUser == null)
-    //    {
-    //        Debug.LogError("UnAutherized user");
-    //        return;
-    //    }
-    //    Dictionary<string, object> score = new Dictionary<string, object>
-    //     {
-    //         {"score", newScore},
-    //     };
-
-    //    DocumentReference scoreRef = db.Collection("users").Document(_auth.CurrentUser.UserId);
-
-    //    scoreRef.UpdateAsync(score).ContinueWithOnMainThread(task =>
-    //    {
-    //        Debug.Log("Updated Score");
-    //    });
-
-
-    //}
 
 
 
@@ -116,6 +55,9 @@ public class FirestoreDB : MonoBehaviour
             return;
         }
         string name;
+        string id;
+        int coins;
+        int highscore;
         db.Collection("users").Document(_auth.CurrentUser.UserId).GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsCanceled)
@@ -130,7 +72,21 @@ public class FirestoreDB : MonoBehaviour
             else if (task.IsCompleted)
             {
                 name = task.Result.ConvertTo<UserData>().Name;
-                Debug.Log("user name = " + name);
+                id = task.Result.ConvertTo<UserData>().ID;
+                coins = task.Result.ConvertTo<UserData>().Coins;
+                highscore = task.Result.ConvertTo<UserData>().HighScore;
+
+                Debug.Log("Name = " + name);
+                Debug.Log("Id = " + id);
+                Debug.Log("Coins = " + coins);
+                Debug.Log("high score = " + highscore);
+
+                Managers.Auth.ChangeUser(name);
+                Managers.Auth.ChangeID(id);
+                Managers.Coin.UpdateCoins(id, coins);
+                Managers.HighScore.UpdateHighScore(id, highscore);
+
+                Messenger.Broadcast(GameEvent.SHOW_ALL);
             }
             else
                 Debug.Log("Unexpected error");
@@ -139,6 +95,7 @@ public class FirestoreDB : MonoBehaviour
 
 
 }
+
 [FirestoreData]
 public struct UserData
 {
