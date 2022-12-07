@@ -13,6 +13,7 @@ public class AutorizationController : MonoBehaviour
     [SerializeField] private GameObject _startScreen;
     [SerializeField] private GameObject _gameScreen;
     [SerializeField] private GameObject _mergeScreen;
+    [SerializeField] private GameObject _shopScreen;
     [SerializeField] private OrbitCamera orb;
     [SerializeField] private Text _highScore;
     [SerializeField] private Text _userName;
@@ -24,6 +25,7 @@ public class AutorizationController : MonoBehaviour
     private bool _isopenLoginScreen = false;
     private bool _isopenRegistrationScreen = false;
     private bool _isopenMergeScreen = false;
+    private bool _isopenShopScreen = false;
 
     private string _curUser;
     private string _curID;
@@ -45,9 +47,9 @@ public class AutorizationController : MonoBehaviour
     private void DisplayUser()
     {       
         _highScore.text = "Your Highscore: " + Managers.HighScore.GetDataScore(_curID);
-        Debug.Log("Name: " + _curID);
-        _userName.text = _curUser;
-        Debug.Log("Coins: " + _curUser);
+        Debug.Log("Name: " + _curUser);
+        _userName.text = Managers.Auth.GetUser();
+        Debug.Log("Coins: " + Managers.Coin.GetCoins(_curID));
         _scoreCoins.text = ": " + Managers.Coin.GetCoins(_curID);
     }
 
@@ -65,6 +67,7 @@ public class AutorizationController : MonoBehaviour
         _gameScreen.SetActive(false);
         _startScreen.SetActive(true);
         _mergeScreen.SetActive(false);
+        _shopScreen.SetActive(false);
 
         _curUser = Managers.Auth.GetUser();
         _curID = Managers.Auth.GetID();
@@ -89,6 +92,8 @@ public class AutorizationController : MonoBehaviour
             _startScreen.SetActive(false);
             _autorizationScreen.SetActive(true);
             _isopenAutorizationScreen = true;
+            _shopScreen.SetActive(false);
+            _isopenShopScreen = false;
         }
         else
         {
@@ -166,6 +171,24 @@ public class AutorizationController : MonoBehaviour
             _isopenAutorizationScreen = true;
             _mergeScreen.SetActive(false);
             _isopenMergeScreen = false;
+        }
+    }
+
+    public void ShopScreen()
+    {
+        if (!_isopenShopScreen)
+        {
+            _startScreen.SetActive(false);
+            _autorizationScreen.SetActive(false);
+            _isopenAutorizationScreen = false;
+            _shopScreen.SetActive(true);
+            _isopenShopScreen = true;
+        }
+        else
+        {
+            _startScreen.SetActive(true);
+            _shopScreen.SetActive(false);
+            _isopenShopScreen = false;
         }
     }
     

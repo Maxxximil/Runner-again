@@ -14,7 +14,15 @@ public class FirestoreDB : MonoBehaviour
     public FirebaseAuth _auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
 
 
+    private void Awake()
+    {
+        Messenger.AddListener(GameEvent.GAME_OVER, InitializeUser);
+    }
 
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.GAME_OVER, InitializeUser);
+    }
 
     public void InitializeUser()
     {

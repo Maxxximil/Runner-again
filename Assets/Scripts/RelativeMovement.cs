@@ -49,7 +49,8 @@ public class RelativeMovement : MonoBehaviour
     private void Update()
     {
         _animator.SetFloat("RunSpeed", Managers.Speed.GetData());
-        if (Time.timeScale != 0)
+        //if (Time.timeScale != 0)
+        if (Managers.Speed.GetData() > 0) 
         {
             _moveSpeed = Managers.Speed.GetData();
             Vector3 movement = new Vector3(0, 0, _moveSpeed);
@@ -111,9 +112,19 @@ public class RelativeMovement : MonoBehaviour
                         _animator.SetBool("Jump", true);
                     }
 
-                    if (endTouchPosition.y < startTouchPosition.y && _isGrounded)
+                    if (endTouchPosition.y < startTouchPosition.y)
                     {
-                        StartCoroutine(CoroDumping());
+                        if (_isGrounded)
+                        {
+                            StartCoroutine(CoroDumping());
+                        }
+                        else
+                        {
+                            _forceDown = 20;
+                            _velocity = (Vector3.down * _forceDown) * Time.deltaTime;
+                            _charController.Move(_velocity);
+                            StartCoroutine(CoroDumping());
+                        }
                     }
                 }
 
@@ -154,9 +165,19 @@ public class RelativeMovement : MonoBehaviour
                 _animator.SetBool("Jump", true);
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) && _isGrounded)
+            if (Input.GetKeyDown(KeyCode.DownArrow) )
             {
-                StartCoroutine(CoroDumping());
+                if (_isGrounded)
+                {
+                    StartCoroutine(CoroDumping());
+                }
+                else
+                {
+                    _forceDown = 20;
+                    _velocity = (Vector3.down * _forceDown) * Time.deltaTime;
+                    _charController.Move(_velocity);
+                    StartCoroutine(CoroDumping());
+                }
             }
 
             if (_charController.isGrounded && _forceDown > 0) _forceDown = 1;
@@ -176,18 +197,18 @@ public class RelativeMovement : MonoBehaviour
         }
     }
 
-    private void MoveLeft(Vector3 leftborder, Vector3 rightborder, Vector3 middleborder)
-    {
-        if (_charController.transform.position.x != leftborder.x && _charController.transform.position.x == middleborder.x)
-        {
-            StartCoroutine(CoroMoveLeft());
-        }
+    //private void MoveLeft(Vector3 leftborder, Vector3 rightborder, Vector3 middleborder)
+    //{
+    //    if (_charController.transform.position.x != leftborder.x && _charController.transform.position.x == middleborder.x)
+    //    {
+    //        StartCoroutine(CoroMoveLeft());
+    //    }
 
-        if (_charController.transform.position.x != leftborder.x && _charController.transform.position.x == rightborder.x)
-        {
-            StartCoroutine(CoroMoveLeft());
-        }
-    }
+    //    if (_charController.transform.position.x != leftborder.x && _charController.transform.position.x == rightborder.x)
+    //    {
+    //        StartCoroutine(CoroMoveLeft());
+    //    }
+    //}
 
     IEnumerator CoroMoveLeft()
     {    
