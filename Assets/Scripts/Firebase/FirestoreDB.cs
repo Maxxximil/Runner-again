@@ -8,14 +8,18 @@ using System;
 using System.Threading.Tasks;
 public class FirestoreDB : MonoBehaviour
 {
+    public static FirestoreDB Instance;
+
     [SerializeField] private string _dbPath = "Data base/One of them";
 
-    FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
-    public FirebaseAuth _auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+    FirebaseFirestore db;
+    public FirebaseAuth _auth;
 
 
     private void Awake()
     {
+        db  = FirebaseFirestore.DefaultInstance;
+        _auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
         Messenger.AddListener(GameEvent.GAME_OVER, InitializeUser);
     }
 
@@ -50,9 +54,6 @@ public class FirestoreDB : MonoBehaviour
         });
 
     }
-
-
-
 
 
     public void GetScore()
@@ -100,9 +101,13 @@ public class FirestoreDB : MonoBehaviour
                 Debug.Log("Unexpected error");
         });
     }
+    //public void GetHighScores()
+    //{
 
-
+    //}
 }
+
+
 
 [FirestoreData]
 public struct UserData

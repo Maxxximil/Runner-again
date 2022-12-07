@@ -14,6 +14,7 @@ public class AutorizationController : MonoBehaviour
     [SerializeField] private GameObject _gameScreen;
     [SerializeField] private GameObject _mergeScreen;
     [SerializeField] private GameObject _shopScreen;
+    [SerializeField] private GameObject _leaderBoardScreen;
     [SerializeField] private OrbitCamera orb;
     [SerializeField] private Text _highScore;
     [SerializeField] private Text _userName;
@@ -26,6 +27,7 @@ public class AutorizationController : MonoBehaviour
     private bool _isopenRegistrationScreen = false;
     private bool _isopenMergeScreen = false;
     private bool _isopenShopScreen = false;
+    private bool _isopenLeaderBoardScreen = false;
 
     private string _curUser;
     private string _curID;
@@ -68,6 +70,7 @@ public class AutorizationController : MonoBehaviour
         _startScreen.SetActive(true);
         _mergeScreen.SetActive(false);
         _shopScreen.SetActive(false);
+        _leaderBoardScreen.SetActive(false);
 
         _curUser = Managers.Auth.GetUser();
         _curID = Managers.Auth.GetID();
@@ -94,6 +97,8 @@ public class AutorizationController : MonoBehaviour
             _isopenAutorizationScreen = true;
             _shopScreen.SetActive(false);
             _isopenShopScreen = false;
+            _leaderBoardScreen.SetActive(false);
+            _isopenLeaderBoardScreen = false;
         }
         else
         {
@@ -105,10 +110,48 @@ public class AutorizationController : MonoBehaviour
             _isopenLoginScreen = false;
             _startScreen.SetActive(true);
         }
-       
-
     }
 
+    public void ShopScreen()
+    {
+        if (!_isopenShopScreen)
+        {
+            _startScreen.SetActive(false);
+            _autorizationScreen.SetActive(false);
+            _isopenAutorizationScreen = false;
+            _shopScreen.SetActive(true);
+            _isopenShopScreen = true;
+            _leaderBoardScreen.SetActive(false);
+            _isopenLeaderBoardScreen = false;
+        }
+        else
+        {
+            _startScreen.SetActive(true);
+            _shopScreen.SetActive(false);
+            _isopenShopScreen = false;
+        }
+    }
+
+    public void LeaderBoardScreen()
+    {
+        if(!_isopenLeaderBoardScreen)
+        {
+            _startScreen.SetActive(false);
+            _autorizationScreen.SetActive(false);
+            _isopenAutorizationScreen = false;
+            _shopScreen.SetActive(false);
+            _isopenShopScreen = false;
+            _leaderBoardScreen.SetActive(true);
+            _isopenLeaderBoardScreen = true;
+        }
+        else
+        {
+            _leaderBoardScreen.SetActive(false);
+            _isopenLeaderBoardScreen = false;
+            _startScreen.SetActive(true);
+
+        }
+    }
     public void LoginScreen()
     {
         if (!_isopenLoginScreen)
@@ -174,23 +217,7 @@ public class AutorizationController : MonoBehaviour
         }
     }
 
-    public void ShopScreen()
-    {
-        if (!_isopenShopScreen)
-        {
-            _startScreen.SetActive(false);
-            _autorizationScreen.SetActive(false);
-            _isopenAutorizationScreen = false;
-            _shopScreen.SetActive(true);
-            _isopenShopScreen = true;
-        }
-        else
-        {
-            _startScreen.SetActive(true);
-            _shopScreen.SetActive(false);
-            _isopenShopScreen = false;
-        }
-    }
+    
     
 
     public void StartButton()
