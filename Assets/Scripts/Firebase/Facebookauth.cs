@@ -12,9 +12,10 @@ public class Facebookauth : MonoBehaviour
 {
    
     FirebaseAuth auth;
-    public void Awake()
+    public void Start()
     {
-        
+        Debug.Log("Facebook auth Start()");
+
         if (!FB.IsInitialized)
         {
             FB.Init(InitCallBack, OnHideUnity);

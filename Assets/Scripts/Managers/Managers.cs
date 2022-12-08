@@ -8,7 +8,7 @@ using UnityEngine;
     [RequireComponent(typeof(DistanceManager))]
     [RequireComponent(typeof(SpeedManager))]
     [RequireComponent(typeof(AuthManager))]
-[RequireComponent(typeof(HighScoreManager))]
+    [RequireComponent(typeof(HighScoreManager))]
 
 public class Managers : MonoBehaviour
 {
@@ -19,6 +19,7 @@ public class Managers : MonoBehaviour
     public static DistanceManager Distance { get; private set; }
     public static AuthManager Auth { get; private set; }
     public static HighScoreManager HighScore { get; private set; }
+    public static FireBaseInit FireBaseInit { get; private set; }
 
 
 
@@ -33,6 +34,7 @@ public class Managers : MonoBehaviour
         Distance = GetComponent<DistanceManager>();
         HighScore = GetComponent<HighScoreManager>();
         Auth = GetComponent<AuthManager>();
+        FireBaseInit = GetComponent<FireBaseInit>();
         Data = GetComponent<DataManager>();
 
 
@@ -43,6 +45,7 @@ public class Managers : MonoBehaviour
         _startSequence.Add(Distance);
         _startSequence.Add(HighScore);
         _startSequence.Add(Auth);
+        _startSequence.Add(FireBaseInit);
         _startSequence.Add(Data);
 
         StartCoroutine(StartupManagers());
