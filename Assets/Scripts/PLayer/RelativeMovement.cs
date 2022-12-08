@@ -14,11 +14,11 @@ public class RelativeMovement : MonoBehaviour
 
     private float _moveSpeed;
     public float gravity = -9.8f;
-    
+    private int tryCount;
     public float jumpForce = 10f;
 
-    
 
+    public InterAds interAds;
     private Animator _animator;
     private CharacterController _charController;
 
@@ -44,6 +44,8 @@ public class RelativeMovement : MonoBehaviour
 
         _animator.SetBool("Run", false);
         _animator.SetFloat("RunSpeed", Managers.Speed.GetData());
+
+        tryCount = PlayerPrefs.GetInt("tryCount");
     }
 
     private void Update()
@@ -254,10 +256,17 @@ public class RelativeMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Lose")
         {
+
             Messenger.Broadcast("GAME_OVER");  
             _animator.SetBool("Run", false);
+            tryCount++;
+            PlayerPrefs.SetInt("tryCount", tryCount);
+
+            if (tryCount % 2 == 0)
+            {
+                interAds.ShowAd();
+            }
             Managers.Speed.UpdateData(0f);
-            //Time.timeScale = 0;
             Managers.Speed.ChangePause(false);
         }
     }

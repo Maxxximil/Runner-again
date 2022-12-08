@@ -34,6 +34,7 @@ public class CoinManager : MonoBehaviour, IGameManager
         {
             _numCoins.Add(name, value);
         }
+        Messenger.Broadcast(GameEvent.SHOW_ALL);
         Managers.Data.SaveGameState();
     }
 

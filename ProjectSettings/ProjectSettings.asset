@@ -161,7 +161,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 21
+  AndroidMinSdkVersion: 28
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -640,7 +640,8 @@ PlayerSettings:
   gcIncremental: 1
   assemblyVersionValidation: 1
   gcWBarrierValidation: 0
-  apiCompatibilityLevelPerPlatform: {}
+  apiCompatibilityLevelPerPlatform:
+    Android: 3
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Runner
@@ -702,8 +703,8 @@ PlayerSettings:
     Build: 0
     Collab: 0
     Game Performance: 0
-    Legacy Analytics: 1
-    Purchasing: 1
+    Legacy Analytics: 0
+    Purchasing: 0
     UDP: 0
     Unity Ads: 0
   luminIcon:

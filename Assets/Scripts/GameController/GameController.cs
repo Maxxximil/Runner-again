@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
 
     private List<Chunk> spawnedChanks = new List<Chunk>();
 
+    
 
     private void Start()
     {

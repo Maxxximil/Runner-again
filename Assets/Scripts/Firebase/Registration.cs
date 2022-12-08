@@ -24,8 +24,10 @@ public class Registration : MonoBehaviour
 
     public UnityEvent success;
 
-    public void Awake()
+    public void Start()
     {
+        Debug.Log("Registration Start()");
+
         //Check that all of the necessary dependencies for Firebase are present on the system
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {

@@ -28,6 +28,9 @@ public class StartupController : MonoBehaviour
 
     private void OnManagersStarted()
     {
+        Debug.Log("Loading first scene...");
         SceneManager.LoadScene("First");
+        
+
     }
 }

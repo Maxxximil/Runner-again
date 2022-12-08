@@ -33,6 +33,8 @@ public class AutorizationController : MonoBehaviour
     private string _curID;
     private void Awake()
     {
+        Debug.Log("Autorization controller Awake()");
+
         Messenger.AddListener(GameEvent.ADD_COINS, OnAddCoins);
         Messenger.AddListener(GameEvent.SHOW_ALL, DisplayUser);
         Managers.Data.LoadGameState();

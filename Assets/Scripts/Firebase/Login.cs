@@ -23,8 +23,10 @@ public class Login : MonoBehaviour
 
     public UnityEvent success;
 
-    public void Awake()
+    public void Start()
     {
+        Debug.Log("Login Start()");
+
         //Check that all of the necessary dependencies for Firebase are present on the system
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {

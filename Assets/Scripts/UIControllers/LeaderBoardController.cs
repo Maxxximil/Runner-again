@@ -11,15 +11,10 @@ public class LeaderBoardController : MonoBehaviour
     [SerializeField] private Text[] _scores;
     FirebaseFirestore db;
     private List<DocumentSnapshot> _highscoresList;
-    private void Awake()
-    {
-        db = FirebaseFirestore.DefaultInstance;
-        //DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
-
-
-    }
+    
     private void Start()
     {
+        db = FirebaseFirestore.DefaultInstance;
         _highscoresList = new List<DocumentSnapshot>();
         //_leaders = Managers.HighScore.GetData();
         //foreach(var element in _leaders)
