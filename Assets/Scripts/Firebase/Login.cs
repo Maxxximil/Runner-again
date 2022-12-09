@@ -23,32 +23,15 @@ public class Login : MonoBehaviour
 
     public UnityEvent success;
 
-    public void Start()
+    private void Start()
     {
-        Debug.Log("Login Start()");
-
-        //Check that all of the necessary dependencies for Firebase are present on the system
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
-        {
-            dependencyStatus = task.Result;
-            if (dependencyStatus == DependencyStatus.Available)
-            {
-                //If they are avalible Initialize Firebase
-                InitializeFirebase();
-            }
-            else
-            {
-                Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
-            }
-        });
-
+        InitializeFirebase();
     }
 
     private void InitializeFirebase()
     {
         Debug.Log("Setting up Firebase Auth");
-        //Set the authentication instance object
-        //auth = FirebaseAuth.DefaultInstance;
+      
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance; ;
         auth.StateChanged += AuthStateChanged;
         AuthStateChanged(this, null);
@@ -64,7 +47,7 @@ public class Login : MonoBehaviour
                 Debug.Log("Signed out " + user.UserId);
                 Managers.Auth.ChangeUser("Guest");
                 Managers.Auth.ChangeID("Guest");
-                //Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
+                
 
             }
             user = auth.CurrentUser;
@@ -76,17 +59,12 @@ public class Login : MonoBehaviour
                 Managers.Auth.ChangeUser(user.DisplayName);
                 Managers.Auth.ChangeID(user.UserId);
 
-                //Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
 
             }
         }
     }
 
-    //void OnDestroy()
-    //{
-    //    auth.StateChanged -= AuthStateChanged;
-    //    auth = null;
-    //}
+   
 
     public void OnSignOut()
     {

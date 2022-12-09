@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -31,6 +32,8 @@ public class AutorizationController : MonoBehaviour
 
     private string _curUser;
     private string _curID;
+
+    public UnityEvent GetDB;
     private void Awake()
     {
         Debug.Log("Autorization controller Awake()");
@@ -76,6 +79,9 @@ public class AutorizationController : MonoBehaviour
 
         _curUser = Managers.Auth.GetUser();
         _curID = Managers.Auth.GetID();
+
+        StartCoroutine(CheckAuth());
+        //CheckAuth();
         DisplayUser();
     }
 
@@ -85,11 +91,21 @@ public class AutorizationController : MonoBehaviour
         {
             _curUser = Managers.Auth.GetUser();
             _curID = Managers.Auth.GetID();
+
+            GetDB.Invoke();
             DisplayUser();
         }
     }
 
-
+    IEnumerator CheckAuth()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (Managers.Auth.GetID() == "Guest")
+        {
+            Debug.Log("CheckAuth Name: " + Managers.Auth.GetID());
+            AutorizationScreen();
+        }
+    }
     public void AutorizationScreen()
     {
         if (!_isopenAutorizationScreen)

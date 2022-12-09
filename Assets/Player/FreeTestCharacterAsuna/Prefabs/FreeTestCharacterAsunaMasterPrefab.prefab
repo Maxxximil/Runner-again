@@ -1276,7 +1276,8 @@ GameObject:
   - component: {fileID: 1242531262365847570}
   - component: {fileID: 5178707794502584936}
   - component: {fileID: 716946213233906006}
-  - component: {fileID: 8125603477917225862}
+  - component: {fileID: 7988437814724477457}
+  - component: {fileID: 8966014992389123041}
   m_Layer: 0
   m_Name: FreeTestCharacterAsunaMasterPrefab
   m_TagString: Untagged
@@ -1342,7 +1343,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8125603477917225862
+--- !u!114 &7988437814724477457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1351,15 +1352,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1906583077162977960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79cde02df052de94b9c13b518303997a, type: 3}
+  m_Script: {fileID: 11500000, guid: bffa292223ee2cb4b86f30bdee7670b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftPos: {x: -3, y: 0, z: 0}
-  rightPos: {x: 3, y: 0, z: 0}
+  leftPos: {x: 0, y: 0, z: 0}
+  rightPos: {x: 0, y: 0, z: 0}
   midPos: {x: 0, y: 0, z: 0}
-  laneChangeSpeed: {x: 0.25, y: 0, z: 0}
+  laneChangeSpeed: {x: 0, y: 0, z: 0}
   gravity: -9.8
   jumpForce: 10
+  interAds: {fileID: 0}
+--- !u!114 &8966014992389123041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906583077162977960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d25c6d93e2db148a8aa3b47296536a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1925226137286619762
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class SpawnBlocks : MonoBehaviour
     [SerializeField] public Block[] BlockPrefabs;
     [SerializeField] public Block FirstBlock;
 
-    public int spawnDistance = 20;
+    public int spawnDistance = 15;
 
     private List<Block> spawnedBlocks = new List<Block>();
 
@@ -21,14 +21,20 @@ public class SpawnBlocks : MonoBehaviour
     private void Start()
     {
         spawnedBlocks.Add(FirstBlock);
+        StartSpawnBlocks();
     }
 
-    private void Update()
+    private void StartSpawnBlocks()
     {
-        if ((Player.position.z > spawnedBlocks[spawnedBlocks.Count - 1].place.position.z - 10))
+        while(Managers.Speed.GetData() > 0)
         {
-            SpawnDiffBlocks();
+            StartCoroutine(EnumSpawnBlocks());
         }
+    }
+
+    IEnumerator EnumSpawnBlocks()
+    {
+        SpawnDiffBlocks();
         if (spawnedBlocks.Count >= 20)
         {
             for (int j = 0; j < 4; j++)
@@ -38,7 +44,25 @@ public class SpawnBlocks : MonoBehaviour
                 spawnedBlocks.RemoveAt(j);
             }
         }
+        yield return new WaitForSeconds(1f);
     }
+
+    //private void Update()
+    //{
+    //    if ((Player.position.z > spawnedBlocks[spawnedBlocks.Count - 1].place.position.z))
+    //    {
+    //        SpawnDiffBlocks();
+    //    }
+    //    if (spawnedBlocks.Count >= 20)
+    //    {
+    //        for (int j = 0; j < 4; j++)
+    //        {
+    //            Debug.Log(j);
+    //            DestroyImmediate(spawnedBlocks[j].gameObject, true);
+    //            spawnedBlocks.RemoveAt(j);
+    //        }
+    //    }
+    //}
 
     private void SpawnDiffBlocks()
     {

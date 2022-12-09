@@ -9,6 +9,7 @@ using UnityEngine;
     [RequireComponent(typeof(SpeedManager))]
     [RequireComponent(typeof(AuthManager))]
     [RequireComponent(typeof(HighScoreManager))]
+    [RequireComponent(typeof(FireBaseInit))]
 
 public class Managers : MonoBehaviour
 {

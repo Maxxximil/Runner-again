@@ -47,6 +47,7 @@ public class FireBaseInit : MonoBehaviour, IGameManager
 
     public static void CheckIfReady()
     {
+        Debug.Log("Firebase is starting dependencies.");
 
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
             Firebase.DependencyStatus dependencyStatus = task.Result;

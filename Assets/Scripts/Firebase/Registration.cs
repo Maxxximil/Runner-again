@@ -24,26 +24,29 @@ public class Registration : MonoBehaviour
 
     public UnityEvent success;
 
-    public void Start()
+    //public void Start()
+    //{
+    //    Debug.Log("Registration Start()");
+
+    //    //Check that all of the necessary dependencies for Firebase are present on the system
+    //    FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+    //    {
+    //        dependencyStatus = task.Result;
+    //        if (dependencyStatus == DependencyStatus.Available)
+    //        {
+    //            //If they are avalible Initialize Firebase
+    //            InitializeFirebase();
+    //        }
+    //        else
+    //        {
+    //            Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
+    //        }
+    //    });
+    //}
+    private void Start()
     {
-        Debug.Log("Registration Start()");
-
-        //Check that all of the necessary dependencies for Firebase are present on the system
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
-        {
-            dependencyStatus = task.Result;
-            if (dependencyStatus == DependencyStatus.Available)
-            {
-                //If they are avalible Initialize Firebase
-                InitializeFirebase();
-            }
-            else
-            {
-                Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
-            }
-        });
+        InitializeFirebase();
     }
-
     private void InitializeFirebase()
     {
         Debug.Log("Setting up Firebase Auth");
@@ -143,7 +146,7 @@ public class Registration : MonoBehaviour
                         Managers.Auth.ChangeUser(user.DisplayName);
                         Managers.Auth.ChangeID(user.UserId);
 
-                        success.Invoke();
+                        //success.Invoke();
                         //Messenger<string>.Broadcast(GameEvent.USER_NAME, user.DisplayName);
                         warningRegisterText.text = "";
                     }

@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bc3d6dbb115576d49b5612be12273546, type: 2}
+  - {fileID: 2100000, guid: d66ccea9f1eb6a742b82d81af6899ab4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,7 +94,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.27391008, y: 3.1056075, z: 4.635027}
-  m_Center: {x: -0.036955014, y: 4.447196, z: 8.107323e-17}
+  m_Center: {x: -0.036955014, y: 4.447196, z: 0}
 --- !u!1 &5796949696938226904
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2193658226575006806}
   m_Layer: 0
   m_Name: Obs_2
-  m_TagString: Untagged
+  m_TagString: Lose
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5796949696938226904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec39376f6f809a746b1e3cd07e078e18, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f47e8b42381ea144a3a48274d2bdced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   place: {fileID: 6573346315894255202}
