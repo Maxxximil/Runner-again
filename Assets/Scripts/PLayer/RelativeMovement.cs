@@ -110,7 +110,7 @@ public class RelativeMovement : MonoBehaviour
                         {
                             UnDucking();
                         }
-                        _forceDown = -12;
+                        _forceDown = -14;
                         _animator.SetBool("Jump", true);
                     }
 
@@ -163,7 +163,7 @@ public class RelativeMovement : MonoBehaviour
                 {
                     UnDucking();
                 }
-                _forceDown = -12;
+                _forceDown = -14;
                 _animator.SetBool("Jump", true);
             }
 
@@ -256,7 +256,6 @@ public class RelativeMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Lose")
         {
-            Debug.Log("Lose");
             Messenger.Broadcast("GAME_OVER");  
             _animator.SetBool("Run", false);
             tryCount++;

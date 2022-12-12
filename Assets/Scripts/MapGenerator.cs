@@ -12,7 +12,7 @@ public class MapGenerator : MonoBehaviour
     private int[] posX = { -3, 0, 3 };
     public  int LaneOffset = 3;
     private int _coinsCountInItem = 10;
-    private float _coinsHeight = 1.2f;
+    private float _coinsHeight = 1f;
     private int _mapSize;
     enum TrackPos { Left = -1, Center = 0, Right = 1};
 
@@ -42,8 +42,8 @@ public class MapGenerator : MonoBehaviour
     {
         _mapSize = _itemCountInMap * _itemSpace;
         maps.Add(MakeMap1());
-        maps.Add(MakeMap1());
-        maps.Add(MakeMap1());
+        maps.Add(MakeMap2());
+        maps.Add(MakeMap3());
         AddActiveMap();
         AddActiveMap();
         foreach (GameObject map in maps)
@@ -62,7 +62,6 @@ public class MapGenerator : MonoBehaviour
         foreach(GameObject map in activeMaps)
         {
             map.transform.position -= new Vector3(0, 0, Managers.Speed.GetData() * Time.deltaTime);
-            //map.transform.position = new Vector3(0, 0, Player.position.z);
         }
         if (activeMaps[0].transform.position.z < -_mapSize)
         {
@@ -110,7 +109,7 @@ public class MapGenerator : MonoBehaviour
 
             if (i == 2)
             {
-                item.SetValues(BlockBottomPrefab, TrackPos.Right, CoinsStyle.Jump);
+                item.SetValues(BlockBottomPrefab, TrackPos.Center, CoinsStyle.Jump);
             }
             else if (i == 3)
             {
@@ -135,6 +134,93 @@ public class MapGenerator : MonoBehaviour
         return result;
     }
 
+    private GameObject MakeMap2()
+    {
+        GameObject result = new GameObject("Map2");
+        result.transform.SetParent(transform);
+        MapItem item = new MapItem();
+        for (int i = 0; i < _itemCountInMap; i++)
+        {
+            if(i == 0)
+            {
+                item.SetValues(BlockTopPrefab, TrackPos.Center, CoinsStyle.Line);
+
+            }
+
+            if (i == 1)
+            {
+                item.SetValues(BlockBottomPrefab, TrackPos.Right, CoinsStyle.Jump);
+            }
+
+            if (i == 2)
+            {
+                item.SetValues(BlockTopPrefab, TrackPos.Right, CoinsStyle.Line);
+            }
+            else if (i == 3)
+            {
+                item.SetValues(BlockTopPrefab, TrackPos.Left, CoinsStyle.Line);
+            }
+            else if (i == 4)
+            {
+                item.SetValues(BlockBottomPrefab, TrackPos.Center, CoinsStyle.Jump);
+            }
+
+            Vector3 obstaclePos = new Vector3((int)item.trackPos * LaneOffset, 0.5f, i * _itemSpace);
+
+            if (item.obstacle != null)
+            {
+                CreateCoins(item.coinsStyle, obstaclePos, result);
+                GameObject go = Instantiate(item.obstacle);
+                go.transform.position = obstaclePos;
+                go.transform.SetParent(result.transform);
+            }
+        }
+
+        return result;
+    }
+    private GameObject MakeMap3()
+    {
+        GameObject result = new GameObject("Map3");
+        result.transform.SetParent(transform);
+        MapItem item = new MapItem();
+        for (int i = 0; i < _itemCountInMap; i++)
+        {
+            if (i == 0)
+            {
+                item.SetValues(BlockBottomPrefab, TrackPos.Center, CoinsStyle.Jump);
+            }
+
+            if (i == 1)
+            {
+                item.SetValues(null, TrackPos.Left, CoinsStyle.Line);
+            }
+
+            if (i == 2)
+            {
+                item.SetValues(BlockBottomPrefab, TrackPos.Center, CoinsStyle.Jump);
+            }
+            else if (i == 3)
+            {
+                item.SetValues(null, TrackPos.Left, CoinsStyle.Line);
+            }
+            else if (i == 4)
+            {
+                item.SetValues(BlockBottomPrefab, TrackPos.Right, CoinsStyle.Jump);
+            }
+
+            Vector3 obstaclePos = new Vector3((int)item.trackPos * LaneOffset, 0.5f, i * _itemSpace);
+
+            if (item.obstacle != null)
+            {
+                CreateCoins(item.coinsStyle, obstaclePos, result);
+                GameObject go = Instantiate(item.obstacle);
+                go.transform.position = obstaclePos;
+                go.transform.SetParent(result.transform);
+            }
+        }
+
+        return result;
+    }
     void CreateCoins(CoinsStyle style, Vector3 pos, GameObject parentObject)
     {
         Vector3 coinPos = Vector3.zero;

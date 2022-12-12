@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - 
+  - f5210cab4043b652ddd18f34281b1b5e
   appIds:
-  - 0
+  - 509354327882903
   appLabels:
-  - App Name
+  - Runner
   cookie: 1
   logging: 1
   status: 1
   xfbml: 0
   frictionlessRequests: 1
-  androidKeystorePath: 
+  androidKeystorePath: Keystore/runner.keystore
   iosURLSuffix: 
   appLinkSchemes:
   - list: []
