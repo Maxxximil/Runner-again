@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2695678605028114092}
-  - component: {fileID: 1286658055925425131}
   - component: {fileID: 7273066697097426199}
   - component: {fileID: 4103717926856409300}
+  - component: {fileID: 4133770079333534572}
   m_Layer: 0
   m_Name: Pirate Coin
   m_TagString: Untagged
@@ -28,26 +28,12 @@ Transform:
   m_GameObject: {fileID: 3324546872456143894}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 947153261871004552}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1286658055925425131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3324546872456143894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d955213d460b2a44487f72e1a512025d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Coin
-  place: {fileID: 2695678605028114092}
 --- !u!65 &7273066697097426199
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71,7 +57,7 @@ Animator:
   m_GameObject: {fileID: 3324546872456143894}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5587b222c84ee4e4bbbcda6405960f4b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9dd651340bf18924bb904e16b9362b37, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 2
   m_ApplyRootMotion: 0
@@ -80,6 +66,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4133770079333534572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324546872456143894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc10b69715225014eb6e3cbbb4e654d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Coin
+  place: {fileID: 2695678605028114092}
 --- !u!1 &6767941244478338655
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +139,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d8af2a107b84ce40a69e80fa1ca27ad, type: 2}
+  - {fileID: 2100000, guid: 96b89fb09038ab44cb5725a346f759a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

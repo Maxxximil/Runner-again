@@ -19,8 +19,8 @@ public class AuthManager : MonoBehaviour, IGameManager
 
         _network = service;
 
-        _curUser = "Default";
-        _curID = "Default";
+        _curUser = "Guest";
+        _curID = "Guest";
 
         status = ManagerStatus.Started;
     }

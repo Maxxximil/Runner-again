@@ -46,6 +46,7 @@ public class UIController : MonoBehaviour
     public void NewGame()
     {
         SceneManager.LoadScene("First");
+        Managers.Distance.UpdateData(1);
     }
 
     public void ExitGame()

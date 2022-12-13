@@ -15,13 +15,16 @@ public class FirestoreDB : MonoBehaviour
     FirebaseFirestore db;
     public FirebaseAuth _auth;
 
+    private void OnEnable()
+    {
+        Messenger.AddListener(GameEvent.GAME_OVER, InitializeUser);
 
-    
+    }
+
     private void Start()
     {
         db = FirebaseFirestore.DefaultInstance;
         _auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
-        Messenger.AddListener(GameEvent.GAME_OVER, InitializeUser);
 
     }
 
@@ -34,7 +37,7 @@ public class FirestoreDB : MonoBehaviour
     {
         if (_auth.CurrentUser == null)
         {
-            Debug.LogError("UnAutherized user");
+            Debug.Log("Log in for save your progress in Data Base");
             return;
         }
         UserData userData = new UserData
@@ -44,10 +47,6 @@ public class FirestoreDB : MonoBehaviour
             Coins = Managers.Coin.GetCoins(Managers.Auth.GetID()),
             HighScore = Managers.HighScore.GetDataScore(Managers.Auth.GetID())
         };
-        Debug.Log("Name: " + userData.Name);
-        Debug.Log("ID: " + userData.ID);
-        Debug.Log("Coins: " + userData.Coins);
-        Debug.Log("HighScore: " + userData.HighScore);
 
         DocumentReference scoreRef = db.Collection("users").Document(_auth.CurrentUser.UserId);
         scoreRef.SetAsync(userData).ContinueWithOnMainThread(task =>
@@ -62,7 +61,7 @@ public class FirestoreDB : MonoBehaviour
     {
         if (_auth.CurrentUser == null)
         {
-            Debug.LogError("UnAutherized user");
+            Debug.Log("Log in for save your progress in Data Base");
             return;
         }
         string name;
@@ -87,11 +86,6 @@ public class FirestoreDB : MonoBehaviour
                 coins = task.Result.ConvertTo<UserData>().Coins;
                 highscore = task.Result.ConvertTo<UserData>().HighScore;
 
-                Debug.Log("Name = " + name);
-                Debug.Log("Id = " + id);
-                Debug.Log("Coins = " + coins);
-                Debug.Log("high score = " + highscore);
-
                 Managers.Auth.ChangeUser(name);
                 Managers.Auth.ChangeID(id);
                 Managers.Coin.UpdateCoins(id, coins);
@@ -103,10 +97,7 @@ public class FirestoreDB : MonoBehaviour
                 Debug.Log("Unexpected error");
         });
     }
-    //public void GetHighScores()
-    //{
-
-    //}
+  
 }
 
 

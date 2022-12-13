@@ -55,17 +55,17 @@ public class RelativeMovement : MonoBehaviour
         if (Managers.Speed.GetData() > 0) 
         {
             _moveSpeed = Managers.Speed.GetData();
-            Vector3 movement = new Vector3(0, 0, _moveSpeed);
+           //Vector3 movement = new Vector3(0, 0, _moveSpeed);
             Vector3 leftborder = new Vector3(leftPos.x, 0, 0);
             Vector3 rightborder = new Vector3(rightPos.x, 0, 0);
             Vector3 middleborder = new Vector3(midPos.x, 0, 0);
-            movement *= Time.deltaTime;
-            movement = transform.TransformDirection(movement);
+            //movement *= Time.deltaTime;
+            //movement = transform.TransformDirection(movement);
             leftborder = transform.TransformDirection(leftborder);
             rightborder = transform.TransformDirection(rightborder);
             middleborder = transform.TransformDirection(middleborder);
 
-            _charController.Move(movement);
+            //_charController.Move(movement);
 
             if(Input.touchCount>0 &&Input.GetTouch(0).phase == TouchPhase.Began)
             {
@@ -110,7 +110,7 @@ public class RelativeMovement : MonoBehaviour
                         {
                             UnDucking();
                         }
-                        _forceDown = -15;
+                        _forceDown = -14;
                         _animator.SetBool("Jump", true);
                     }
 
@@ -163,7 +163,7 @@ public class RelativeMovement : MonoBehaviour
                 {
                     UnDucking();
                 }
-                _forceDown = -15;
+                _forceDown = -14;
                 _animator.SetBool("Jump", true);
             }
 
@@ -256,7 +256,6 @@ public class RelativeMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Lose")
         {
-
             Messenger.Broadcast("GAME_OVER");  
             _animator.SetBool("Run", false);
             tryCount++;

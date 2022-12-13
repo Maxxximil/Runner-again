@@ -9,22 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2115301841, guid: c49f2b3ca212b47fc9cd8ce655177c89, type: 3}
+  m_Script: {fileID: -2115301841, guid: ea428a7c714867742975fac54b14baeb, type: 3}
   m_Name: FacebookSettings
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - 815b9f4e87dc6ffc0215e8a5394dd3d0
+  - f5210cab4043b652ddd18f34281b1b5e
   appIds:
-  - 527822169237064
+  - 509354327882903
   appLabels:
-  - Runner-again
+  - Runner
   cookie: 1
   logging: 1
   status: 1
   xfbml: 0
   frictionlessRequests: 1
-  androidKeystorePath: D:\Git\Runner-again\Keystore\runner.keystore
+  androidKeystorePath: Keystore/runner.keystore
   iosURLSuffix: 
   appLinkSchemes:
   - list: []

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -19,6 +20,8 @@ public class AutorizationController : MonoBehaviour
     [SerializeField] private Text _highScore;
     [SerializeField] private Text _userName;
     [SerializeField] private Text _scoreCoins;
+    [SerializeField] private GameObject _pause;
+    [SerializeField] private GameObject _unpause;
     
 
 
@@ -28,9 +31,12 @@ public class AutorizationController : MonoBehaviour
     private bool _isopenMergeScreen = false;
     private bool _isopenShopScreen = false;
     private bool _isopenLeaderBoardScreen = false;
+    private bool _isGo = true;
 
     private string _curUser;
     private string _curID;
+
+    public UnityEvent GetDB;
     private void Awake()
     {
         Debug.Log("Autorization controller Awake()");
@@ -76,6 +82,11 @@ public class AutorizationController : MonoBehaviour
 
         _curUser = Managers.Auth.GetUser();
         _curID = Managers.Auth.GetID();
+
+        
+
+        StartCoroutine(CheckAuth());
+        //CheckAuth();
         DisplayUser();
     }
 
@@ -85,11 +96,37 @@ public class AutorizationController : MonoBehaviour
         {
             _curUser = Managers.Auth.GetUser();
             _curID = Managers.Auth.GetID();
+
+            GetDB.Invoke();
             DisplayUser();
         }
     }
 
+    IEnumerator CheckAuth()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (Managers.Auth.GetID() == "Guest")
+        {
+            Debug.Log("CheckAuth Name: " + Managers.Auth.GetID());
+            AutorizationScreen();
+        }
+    }
 
+    public void PauseButon()
+    {
+        _isGo = !_isGo;
+        Managers.Speed.ChangePause(_isGo);
+        if (_isGo)
+        {
+            _unpause.SetActive(false);
+            _pause.SetActive(true);
+        }
+        else
+        {
+            _unpause.SetActive(true);
+            _pause.SetActive(false);
+        }
+    }
     public void AutorizationScreen()
     {
         if (!_isopenAutorizationScreen)
