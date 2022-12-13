@@ -8,7 +8,13 @@ public class HighScoreController : MonoBehaviour
 {
    
     private string _name = "Default";
-
+    private void FixedUpdate()
+    {
+        if(Managers.HighScore.GetDataScore(Managers.Auth.GetID()) < Managers.Distance.GetData())
+        {
+            Managers.HighScore.AddHighScore(Managers.Auth.GetID()); 
+        }
+    }
     //Подписка и отписка на конец игры
     private void Awake()
     {

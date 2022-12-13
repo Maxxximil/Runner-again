@@ -8174,6 +8174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1906583077162977960, guid: 798c05ee1e2530b4ebb1d9d7e5a2c6a9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2013727335924707778, guid: 798c05ee1e2530b4ebb1d9d7e5a2c6a9, type: 3}
       propertyPath: m_Height
       value: 1.8
@@ -8338,6 +8342,7 @@ PrefabInstance:
     - {fileID: 4340930675432357028, guid: 798c05ee1e2530b4ebb1d9d7e5a2c6a9, type: 3}
     - {fileID: 1364863121288540833, guid: 798c05ee1e2530b4ebb1d9d7e5a2c6a9, type: 3}
     - {fileID: 7329894547770453410, guid: 798c05ee1e2530b4ebb1d9d7e5a2c6a9, type: 3}
+    - {fileID: 8966014992389123041, guid: 798c05ee1e2530b4ebb1d9d7e5a2c6a9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 798c05ee1e2530b4ebb1d9d7e5a2c6a9, type: 3}
 --- !u!1 &1368480195
 GameObject:
@@ -11728,7 +11733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1725461971
 MonoBehaviour:
   m_ObjectHideFlags: 0

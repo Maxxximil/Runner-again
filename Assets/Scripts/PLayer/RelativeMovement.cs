@@ -251,6 +251,7 @@ public class RelativeMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Lose")
         {
+            
             //Рассылка пройгрыша
             Messenger.Broadcast("GAME_OVER");  
             _animator.SetBool("Run", false);
