@@ -10,24 +10,32 @@ using Firebase.Extensions;
 //Таблица рекордов с БД
 public class LeaderBoardController : MonoBehaviour
 {
+    public static LeaderBoardController Instanse;
+
+
     [SerializeField] private Text[] _scores;
     FirebaseFirestore db;
     private List<DocumentSnapshot> _highscoresList;
-    
+
+    private void Awake()
+    {
+        Instanse = this;
+    }
+
     private void Start()
     {
         db = FirebaseFirestore.DefaultInstance;
-        _highscoresList = new List<DocumentSnapshot>();
         
-        GetHighScores();
+        
+        //GetHighScores();
         
     }
 
     
     //Получение всех рекордов с БД
-    private void GetHighScores()
+    public void GetHighScores()
     {
-
+        _highscoresList = new List<DocumentSnapshot>();
         db.Collection("users").GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsCanceled)

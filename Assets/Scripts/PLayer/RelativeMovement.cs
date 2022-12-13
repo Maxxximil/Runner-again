@@ -264,7 +264,7 @@ public class RelativeMovement : MonoBehaviour
                 interAds.ShowAd();
             }
             Managers.Speed.UpdateData(0f);
-            Managers.Speed.ChangePause(false);
+            //Managers.Speed.ChangePause(false);
         }
     }
 

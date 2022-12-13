@@ -11,7 +11,7 @@ public class MapGenerator : MonoBehaviour
     private int _itemSpace = 10;
     private int _itemCountInMap = 5;
     public  int LaneOffset = 3;
-    private int _coinsCountInItem = 10;
+    private int _coinsCountInItem = 6;
     private float _coinsHeight = 1f;
     private int _mapSize;
     enum TrackPos { Left = -1, Center = 0, Right = 1};

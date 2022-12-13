@@ -182,8 +182,10 @@ public class AutorizationController : MonoBehaviour
     //Окно лидеров
     public void LeaderBoardScreen()
     {
+
         if(!_isopenLeaderBoardScreen)
         {
+            LeaderBoardController.Instanse.GetHighScores();
             _startScreen.SetActive(false);
             _autorizationScreen.SetActive(false);
             _isopenAutorizationScreen = false;
