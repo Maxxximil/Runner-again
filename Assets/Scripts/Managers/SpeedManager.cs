@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Менеджер синглтона отвечающий за скорость
 public class SpeedManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }

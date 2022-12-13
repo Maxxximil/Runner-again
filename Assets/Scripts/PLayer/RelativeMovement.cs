@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Перемещение персонажа
 [RequireComponent(typeof(CharacterController))]
 public class RelativeMovement : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class RelativeMovement : MonoBehaviour
     [SerializeField] private Vector3 laneChangeSpeed;
 
 
-    private float _moveSpeed;
     public float gravity = -9.8f;
     private int tryCount;
     public float jumpForce = 10f;
@@ -40,8 +40,6 @@ public class RelativeMovement : MonoBehaviour
         _isGrounded = true;
         _isDucking = false;
 
-        _moveSpeed = Managers.Speed.GetData(); 
-
         _animator.SetBool("Run", false);
         _animator.SetFloat("RunSpeed", Managers.Speed.GetData());
 
@@ -51,22 +49,20 @@ public class RelativeMovement : MonoBehaviour
     private void Update()
     {
         _animator.SetFloat("RunSpeed", Managers.Speed.GetData());
-        //if (Time.timeScale != 0)
+        
         if (Managers.Speed.GetData() > 0) 
-        {
-            _moveSpeed = Managers.Speed.GetData();
-           //Vector3 movement = new Vector3(0, 0, _moveSpeed);
+        {       
+           
             Vector3 leftborder = new Vector3(leftPos.x, 0, 0);
             Vector3 rightborder = new Vector3(rightPos.x, 0, 0);
             Vector3 middleborder = new Vector3(midPos.x, 0, 0);
-            //movement *= Time.deltaTime;
-            //movement = transform.TransformDirection(movement);
+            
             leftborder = transform.TransformDirection(leftborder);
             rightborder = transform.TransformDirection(rightborder);
             middleborder = transform.TransformDirection(middleborder);
 
-            //_charController.Move(movement);
-
+           
+            //Отслеживание свайпов
             if(Input.touchCount>0 &&Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 startTouchPosition = Input.GetTouch(0).position;
@@ -131,7 +127,7 @@ public class RelativeMovement : MonoBehaviour
                 }
 
             }
-
+            //Отслеживание нажатий кнопок
 
             if (Input.GetKeyDown(KeyCode.LeftArrow) && _charController.transform.position.x != leftborder.x
                 && _charController.transform.position.x == middleborder.x)
@@ -156,7 +152,7 @@ public class RelativeMovement : MonoBehaviour
                 StartCoroutine(CoroMoveRight());
             }
 
-
+            //Прыжок
             if (Input.GetKeyDown(KeyCode.UpArrow) && _isGrounded)
             {
                 if (_isDucking)
@@ -166,7 +162,7 @@ public class RelativeMovement : MonoBehaviour
                 _forceDown = -14;
                 _animator.SetBool("Jump", true);
             }
-
+            //Подкат
             if (Input.GetKeyDown(KeyCode.DownArrow) )
             {
                 if (_isGrounded)
@@ -199,19 +195,8 @@ public class RelativeMovement : MonoBehaviour
         }
     }
 
-    //private void MoveLeft(Vector3 leftborder, Vector3 rightborder, Vector3 middleborder)
-    //{
-    //    if (_charController.transform.position.x != leftborder.x && _charController.transform.position.x == middleborder.x)
-    //    {
-    //        StartCoroutine(CoroMoveLeft());
-    //    }
 
-    //    if (_charController.transform.position.x != leftborder.x && _charController.transform.position.x == rightborder.x)
-    //    {
-    //        StartCoroutine(CoroMoveLeft());
-    //    }
-    //}
-
+    //Сопрограмма перемещения влево
     IEnumerator CoroMoveLeft()
     {    
         for (int i = 0; i < 12; i++)
@@ -220,6 +205,9 @@ public class RelativeMovement : MonoBehaviour
             yield return new WaitForSeconds(0.015f);
         }      
     }
+
+    //Сопрограмма перемещения вправо
+
     IEnumerator CoroMoveRight()
     {       
         for (int i = 0; i < 12; i++)
@@ -229,13 +217,17 @@ public class RelativeMovement : MonoBehaviour
         }     
     }
 
-   IEnumerator CoroDumping()
+    //Сопрограмма подката
+
+
+    IEnumerator CoroDumping()
     {
         Ducking();
         yield return new WaitForSeconds(1f);
         UnDucking();
     }
 
+    //Сесть
     private void Ducking()
     {
         _isDucking = true;
@@ -244,6 +236,7 @@ public class RelativeMovement : MonoBehaviour
         _animator.SetBool("Dump", true);
     }
 
+    //Встать
     private void UnDucking()
     {
         _isDucking = false;
@@ -252,13 +245,17 @@ public class RelativeMovement : MonoBehaviour
         _animator.SetBool("Dump", false);
     }
 
+    //Триггер на проигрыш при косании с препятствием
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Lose")
         {
+            //Рассылка пройгрыша
             Messenger.Broadcast("GAME_OVER");  
             _animator.SetBool("Run", false);
             tryCount++;
+            //Увеличение количества попыток и показ рекламы после 2х попыток
             PlayerPrefs.SetInt("tryCount", tryCount);
 
             if (tryCount % 2 == 0)

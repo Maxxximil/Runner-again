@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 506841020853592817}
-  - component: {fileID: 7746983111011772034}
   m_Layer: 0
   m_Name: Obs_1
   m_TagString: Untagged
@@ -32,19 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
---- !u!114 &7746983111011772034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883683635019085899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f47e8b42381ea144a3a48274d2bdced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  place: {fileID: 506841020853592817}
 --- !u!1 &8200688190537859218
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ using Firebase.Auth;
 using TMPro;
 
 
-
+//Логин через почту и объеденение анонимного аккаунта с почтой
 public class Login : MonoBehaviour
 {
     [SerializeField] private TMP_InputField _inputEmail;
@@ -28,6 +28,7 @@ public class Login : MonoBehaviour
         InitializeFirebase();
     }
 
+    //Инициализация
     private void InitializeFirebase()
     {
         Debug.Log("Setting up Firebase Auth");
@@ -37,6 +38,8 @@ public class Login : MonoBehaviour
         AuthStateChanged(this, null);
 
     }
+
+    //Состояние аутентификации(Гость или авторизированный юзер)
     void AuthStateChanged(object sender, System.EventArgs eventArgs)
     {
         if (auth.CurrentUser != user)
@@ -65,18 +68,20 @@ public class Login : MonoBehaviour
     }
 
    
-
+    //Выход с аккаунта
     public void OnSignOut()
     {
         auth.SignOut();
         Debug.Log("Calling SignOut");
     }
 
+    //Метод для кнопки входа
     public void LogInButton()
     {
         StartCoroutine(LogIn(_inputEmail.text, _inputPassword.text));
     }
 
+    //Логин
     private IEnumerator LogIn(string _email, string _password)
     {
         //Call the Firebase auth signin function passing the email and password
@@ -127,6 +132,7 @@ public class Login : MonoBehaviour
         }
     }
 
+    //Логин анонимно
     public void LogInAnon()
     {
         auth.SignInAnonymouslyAsync().ContinueWith(task => {
@@ -146,9 +152,11 @@ public class Login : MonoBehaviour
                 newUser.DisplayName, newUser.UserId);
             Managers.Auth.ChangeUser("Anon");
             Managers.Auth.ChangeID(newUser.UserId);
+     
         });
     }
 
+    //Объеденение аккаунтов
     public void MergeAccounts()
     {
         Firebase.Auth.Credential credential =

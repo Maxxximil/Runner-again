@@ -7,11 +7,13 @@ using Firebase;
 using System;
 using UnityEngine.UI;
 
-
+//Аутентификация через фейсбук
 public class Facebookauth : MonoBehaviour
 {
    
     FirebaseAuth auth;
+
+    //Инициализация
     public void Start()
     {
         Debug.Log("Facebook auth Start()");
@@ -47,7 +49,7 @@ public class Facebookauth : MonoBehaviour
             Time.timeScale = 1;
         }
     }
-
+    //Метод для входа в фейсбук
     public void Facebook_Login()
     {
         var permission = new List<string>() { "public_profile", "email" };

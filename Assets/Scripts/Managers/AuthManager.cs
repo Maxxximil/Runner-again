@@ -4,6 +4,7 @@ using UnityEngine;
 using Facebook.Unity;
 using Firebase.Auth;
 
+//Менеджер синглтона отвечающий за авторизированного юзера
 public class AuthManager : MonoBehaviour, IGameManager
 {
     private string _curUser;

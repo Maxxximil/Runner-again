@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Облёт камеры во время старта
 public class OrbitCamera : MonoBehaviour
 {
     [SerializeField] private Transform target;

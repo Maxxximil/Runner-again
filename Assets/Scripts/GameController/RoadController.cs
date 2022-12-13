@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Контроллер дороги
 public class RoadController : MonoBehaviour
 {
     private float _speed;
@@ -20,12 +21,14 @@ public class RoadController : MonoBehaviour
     {
         _speed = Managers.Speed.GetData();
         if(_speed != 0)
-        {         
+        {
+            //Изменение общей дистанции
             _speed = Managers.Speed.GetData();
             _distance = (int)(_speed * time);
             Managers.Distance.AddDistance(_distance);
             Messenger.Broadcast("ADD_DISTANCE");
         }
+        //Изменение скорости в зависимости от пройденного расстояния
         if(Managers.Distance.GetData() > _prevDistance + 600)
         {
             Managers.Speed.AddSpeed(1f);

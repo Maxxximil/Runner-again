@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Создание дороги
 public class RoadGenerator : MonoBehaviour
 {
     public GameObject RoadPrefab;
@@ -14,13 +15,11 @@ public class RoadGenerator : MonoBehaviour
 
     private void Start()
     {
-        ResetLevel();
-        //StartLevel();
+        ResetLevel();        
     }
 
     public void StartLevel()
     {
-        //speed = maxSpeed;
         Managers.Speed.UpdateData(maxSpeed);
     }
 
@@ -30,12 +29,12 @@ public class RoadGenerator : MonoBehaviour
         {
             return;
         }
-
+        //Движение дороги
         foreach(GameObject road in roads)
         {
             road.transform.position -= new Vector3(0, 0, Managers.Speed.GetData() * Time.deltaTime);
         }
-
+        //Удаление и создание дороги
         if (roads[0].transform.position.z < -15)
         {
             Destroy(roads[0]);
@@ -47,10 +46,9 @@ public class RoadGenerator : MonoBehaviour
 
 
 
-
+    //Обновление уровня
     public void ResetLevel()
     {
-        //speed = 0;
         Managers.Speed.UpdateData(0);
         while (roads.Count > 0)
         {
@@ -64,6 +62,7 @@ public class RoadGenerator : MonoBehaviour
         }
     }
 
+    //Создание дороги
     private void CreateNextRoad()
     {
         Vector3 pos = Vector3.zero;

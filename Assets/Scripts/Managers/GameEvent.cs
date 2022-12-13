@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Варианты событий на которые можно подписаться
 public static class GameEvent
 {
     public const string ADD_COINS = "ADD_COINS";

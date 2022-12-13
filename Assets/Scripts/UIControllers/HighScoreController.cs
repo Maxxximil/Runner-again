@@ -2,35 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Отслеживание лучшего результата
 public class HighScoreController : MonoBehaviour
 {
-    //private Dictionary<string, int> _newHighScore;
+   
     private string _name = "Default";
 
+    //Подписка и отписка на конец игры
     private void Awake()
     {
         Messenger.AddListener(GameEvent.GAME_OVER, ChangeHighScore);
-        //Messenger<string>.AddListener(GameEvent.USER_NAME, ChangeName);
     }
 
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.GAME_OVER, ChangeHighScore);
-        //Messenger<string>.RemoveListener(GameEvent.USER_NAME, ChangeName);
     }
 
-    //private void Start()
-    //{
-    //    Managers.Data.LoadGameState();
-    //}
+    //Изменение лучшего счета через менеджер
     private void ChangeHighScore()
     {
         _name = Managers.Auth.GetID();
         Managers.HighScore.AddHighScore(_name);
     }
 
-    //private void ChangeName(string name)
-    //{
-    //    _name = name;
-    //}
+   
 }

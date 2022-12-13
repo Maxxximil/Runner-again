@@ -7,11 +7,9 @@ public class CollectebleItems : MonoBehaviour
     [SerializeField] private string itemName;
     [SerializeField] public Transform place;
 
-
+    //При сборе монетки она становится неактивной
     private void OnTriggerEnter(Collider other)
     {
-        //Managers.Coin.AddCoins(1);
-        //Destroy(this.gameObject);
         this.gameObject.SetActive(false);
         Messenger.Broadcast("ADD_COINS");
     }
