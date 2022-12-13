@@ -10,7 +10,7 @@ using UnityEngine;
     [RequireComponent(typeof(AuthManager))]
     [RequireComponent(typeof(HighScoreManager))]
     [RequireComponent(typeof(FireBaseInit))]
-
+    //Класс в котором идёт инициализация менеджеров
 public class Managers : MonoBehaviour
 {
     

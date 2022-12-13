@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+//Очистка данных в полях ввода
 public class NullifyFormData : MonoBehaviour
 {
     [SerializeField] private TMP_InputField[] _inputFields;

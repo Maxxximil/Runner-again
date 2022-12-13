@@ -6,21 +6,25 @@ using Firebase.Extensions;
 using Firebase.Auth;
 using System;
 using System.Threading.Tasks;
+
+//Firestore
 public class FirestoreDB : MonoBehaviour
 {
     public static FirestoreDB Instance;
 
-    [SerializeField] private string _dbPath = "Data base/One of them";
-
     FirebaseFirestore db;
     public FirebaseAuth _auth;
 
+
+    //Подписка на событие конца игры
+    //После конца игры БД обновляется
     private void OnEnable()
     {
         Messenger.AddListener(GameEvent.GAME_OVER, InitializeUser);
 
     }
 
+    //Создание БД
     private void Start()
     {
         db = FirebaseFirestore.DefaultInstance;
@@ -28,11 +32,13 @@ public class FirestoreDB : MonoBehaviour
 
     }
 
+    //Отписывание от события
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.GAME_OVER, InitializeUser);
     }
 
+    //Обновление данных в БД
     public void InitializeUser()
     {
         if (_auth.CurrentUser == null)
@@ -56,7 +62,7 @@ public class FirestoreDB : MonoBehaviour
 
     }
 
-
+    //Получение данных с БД
     public void GetScore()
     {
         if (_auth.CurrentUser == null)
@@ -101,7 +107,7 @@ public class FirestoreDB : MonoBehaviour
 }
 
 
-
+//Структура БД
 [FirestoreData]
 public struct UserData
 {

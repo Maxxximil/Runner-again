@@ -7932,35 +7932,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1316699525}
-  - component: {fileID: 1316699530}
-  - component: {fileID: 1316699529}
-  - component: {fileID: 1316699526}
-  - component: {fileID: 1316699524}
   - component: {fileID: 1316699527}
   m_Layer: 0
-  m_Name: Game Controller
+  m_Name: Inter Ads
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1316699524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1316699523}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d5df5abaf43e74594f3a38930f9537, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 82864005}
-  coins:
-  - {fileID: 4133770079333534572, guid: d09e2158fc530b549bb18f7d51fcb163, type: 3}
-  FirstCoin: {fileID: 0}
-  spawnDistance: 20
 --- !u!4 &1316699525
 Transform:
   m_ObjectHideFlags: 0
@@ -7975,24 +7954,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1316699526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1316699523}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 996af93c7f8e374489249ac8a5b00ee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 82864005}
-  BlockPrefabs:
-  - {fileID: 7746983111011772034, guid: 85fc1b73ac26e7b46907e81a03394060, type: 3}
-  - {fileID: 2193658226575006806, guid: 7e077ef931715124dbc7d746a0079611, type: 3}
-  FirstBlock: {fileID: 0}
-  spawnDistance: 5
 --- !u!114 &1316699527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8005,35 +7966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbe480855af99646a5270473b422214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1316699529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1316699523}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c080c7029dc36804a9113f078e608169, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 0.1
---- !u!114 &1316699530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1316699523}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49f21fccee925842b6c140effb1d29e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 82864005}
-  ChunkPrefabs:
-  - {fileID: 8636009382060811546, guid: 2c66f7f14898eb64da2ada1a90ea6981, type: 3}
-  FirstChunk: {fileID: 0}
 --- !u!1 &1330819907
 GameObject:
   m_ObjectHideFlags: 0
@@ -14411,7 +14343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7874555d7e8336a488dee112cd9b6d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dbPath: Data base/One of them
 --- !u!114 &2123613872
 MonoBehaviour:
   m_ObjectHideFlags: 0

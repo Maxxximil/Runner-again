@@ -7,7 +7,7 @@ using Firebase;
 using Firebase.Auth;
 using TMPro;
 
-
+//Регистрация через почту
 public class Registration : MonoBehaviour
 {
     [SerializeField] private TMP_InputField _inputUserName;
@@ -24,29 +24,13 @@ public class Registration : MonoBehaviour
 
     public UnityEvent success;
 
-    //public void Start()
-    //{
-    //    Debug.Log("Registration Start()");
-
-    //    //Check that all of the necessary dependencies for Firebase are present on the system
-    //    FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
-    //    {
-    //        dependencyStatus = task.Result;
-    //        if (dependencyStatus == DependencyStatus.Available)
-    //        {
-    //            //If they are avalible Initialize Firebase
-    //            InitializeFirebase();
-    //        }
-    //        else
-    //        {
-    //            Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
-    //        }
-    //    });
-    //}
+    
     private void Start()
     {
         InitializeFirebase();
     }
+
+    //Инициализация
     private void InitializeFirebase()
     {
         Debug.Log("Setting up Firebase Auth");
@@ -64,13 +48,13 @@ public class Registration : MonoBehaviour
         auth = null;
     }
 
-
+    //Кнопка регистрации
     public void RegistrarionButton()
     {
         StartCoroutine(Register(_inputUserName.text, _inputEmail.text, _inputPassword.text));
     }
 
-
+    //Регистрация
     private IEnumerator Register(string _username, string _email, string _password)
     {
         if (_username == "")

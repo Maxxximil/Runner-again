@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Менеджер синглтона отвечающий за пройденное расстояние
 public class DistanceManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Менеджер синглтона отвечающий за управление монетками
 public class CoinManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }

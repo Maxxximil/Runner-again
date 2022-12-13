@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Генератор карты
 public class MapGenerator : MonoBehaviour
 {
     [SerializeField] public Transform Player;
@@ -9,7 +10,6 @@ public class MapGenerator : MonoBehaviour
 
     private int _itemSpace = 10;
     private int _itemCountInMap = 5;
-    private int[] posX = { -3, 0, 3 };
     public  int LaneOffset = 3;
     private int _coinsCountInItem = 10;
     private float _coinsHeight = 1f;
@@ -18,6 +18,7 @@ public class MapGenerator : MonoBehaviour
 
     enum CoinsStyle { Line, Jump };
 
+    //Один участок карты
     struct MapItem
     {
         public void SetValues(GameObject gameObject, TrackPos track, CoinsStyle coinsStyle)
@@ -41,9 +42,11 @@ public class MapGenerator : MonoBehaviour
     private void Start()
     {
         _mapSize = _itemCountInMap * _itemSpace;
+        //Заполнение массива картами
         maps.Add(MakeMap1());
         maps.Add(MakeMap2());
         maps.Add(MakeMap3());
+        //Добоавление активных карт
         AddActiveMap();
         AddActiveMap();
         foreach (GameObject map in maps)
@@ -58,11 +61,12 @@ public class MapGenerator : MonoBehaviour
         {
             return;
         }
-
+        //Перемещение карт
         foreach(GameObject map in activeMaps)
         {
             map.transform.position -= new Vector3(0, 0, Managers.Speed.GetData() * Time.deltaTime);
         }
+        //Удаление и создание новых карт
         if (activeMaps[0].transform.position.z < -_mapSize)
         {
             RemoveFirstActiveMap();
@@ -70,6 +74,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    //Удаление первой из активных карт
     private void RemoveFirstActiveMap()
     {
         activeMaps[0].SetActive(false);
@@ -77,6 +82,7 @@ public class MapGenerator : MonoBehaviour
         activeMaps.RemoveAt(0);
     }
 
+    //Добавление активных карт из общего пула
     void AddActiveMap()
     {
         int r = Random.Range(0, maps.Count);
@@ -92,6 +98,8 @@ public class MapGenerator : MonoBehaviour
         maps.RemoveAt(r);
         activeMaps.Add(go);
     }
+
+    //Создание разных карт
 
     private GameObject MakeMap1()
     {
@@ -133,6 +141,7 @@ public class MapGenerator : MonoBehaviour
         
         return result;
     }
+
 
     private GameObject MakeMap2()
     {
@@ -221,6 +230,8 @@ public class MapGenerator : MonoBehaviour
 
         return result;
     }
+
+    //Создание монет для карты
     void CreateCoins(CoinsStyle style, Vector3 pos, GameObject parentObject)
     {
         Vector3 coinPos = Vector3.zero;

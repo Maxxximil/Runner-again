@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+//Информация по внутриигровым покупкам
 public class IAPInfo : MonoBehaviour
 {
     public static IAPInfo Instance;
@@ -12,17 +14,18 @@ public class IAPInfo : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        //PlayerPrefs.SetInt("removeads", 0);
         UpdateCoinsText();
         UpdateRemaoveAdsButton();
     }
 
+    //Кнопка удаления рекламы
     public void UpdateRemaoveAdsButton()
     {
         bool removeAds = PlayerPrefs.GetInt("removeads") == 1;
         removeAdsButton.SetActive(!removeAds);
     }
 
+    //Кнопка доп монеток
     public void UpdateCoinsText()
     {
         int coins = PlayerPrefs.GetInt("coins");

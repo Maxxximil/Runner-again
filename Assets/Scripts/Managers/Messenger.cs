@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Мессенджер для подписки на события
+
 public delegate void Callback();
 public delegate void Callback<T>(T arg1);
 public delegate void Callback<T, U>(T arg1, U arg2);

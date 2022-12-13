@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
-
+//Открытие/закрытие экранов и контроль над UI
 public class AutorizationController : MonoBehaviour
 {
     [SerializeField] private GameObject _autorizationScreen;
@@ -39,8 +39,7 @@ public class AutorizationController : MonoBehaviour
     public UnityEvent GetDB;
     private void Awake()
     {
-        Debug.Log("Autorization controller Awake()");
-
+        //Подписка на события добавления монет и показа всей инфо
         Messenger.AddListener(GameEvent.ADD_COINS, OnAddCoins);
         Messenger.AddListener(GameEvent.SHOW_ALL, DisplayUser);
         Managers.Data.LoadGameState();
@@ -48,12 +47,13 @@ public class AutorizationController : MonoBehaviour
 
     private void OnDestroy()
     {
+        //Отписка
         Messenger.RemoveListener(GameEvent.ADD_COINS, OnAddCoins);
         Messenger.RemoveListener(GameEvent.SHOW_ALL, DisplayUser);
 
     }
 
-
+    //Вывод всей инфо в UI
     private void DisplayUser()
     {       
         _highScore.text = "Your Highscore: " + Managers.HighScore.GetDataScore(_curID);
@@ -63,12 +63,14 @@ public class AutorizationController : MonoBehaviour
         _scoreCoins.text = ": " + Managers.Coin.GetCoins(_curID);
     }
 
+    //Метод вызывающийся при подборе монетки
     private void OnAddCoins()
     {
         Managers.Coin.AddCoins(_curID, 1);
         _scoreCoins.text = ": " + Managers.Coin.GetCoins(_curID);
     }
 
+    //Деактивация всех экранов
     private void Start()
     {
         _autorizationScreen.SetActive(false);
@@ -90,6 +92,7 @@ public class AutorizationController : MonoBehaviour
         DisplayUser();
     }
 
+    //Отслеживание текущего пользователя
     private void Update()
     {
         if(_curID != Managers.Auth.GetID())
@@ -102,6 +105,7 @@ public class AutorizationController : MonoBehaviour
         }
     }
 
+    //Если юзер не авторизован вывести окно авторизации
     IEnumerator CheckAuth()
     {
         yield return new WaitForSeconds(0.1f);
@@ -112,6 +116,7 @@ public class AutorizationController : MonoBehaviour
         }
     }
 
+    //Кнопка паузы
     public void PauseButon()
     {
         _isGo = !_isGo;
@@ -127,6 +132,8 @@ public class AutorizationController : MonoBehaviour
             _pause.SetActive(false);
         }
     }
+
+    //Окно авторизации
     public void AutorizationScreen()
     {
         if (!_isopenAutorizationScreen)
@@ -151,6 +158,7 @@ public class AutorizationController : MonoBehaviour
         }
     }
 
+    //Окно магазина
     public void ShopScreen()
     {
         if (!_isopenShopScreen)
@@ -171,6 +179,7 @@ public class AutorizationController : MonoBehaviour
         }
     }
 
+    //Окно лидеров
     public void LeaderBoardScreen()
     {
         if(!_isopenLeaderBoardScreen)
@@ -191,6 +200,8 @@ public class AutorizationController : MonoBehaviour
 
         }
     }
+
+    //Окно входа через почту
     public void LoginScreen()
     {
         if (!_isopenLoginScreen)
@@ -215,6 +226,7 @@ public class AutorizationController : MonoBehaviour
         }
     }
 
+    //Окно регистрации
     public void RegistrationScreen()
     {
         if (!_isopenRegistrationScreen)
@@ -238,6 +250,7 @@ public class AutorizationController : MonoBehaviour
         }        
     }
 
+    //Окно объеденения анона с почтой
     public void MergeScreen()
     {
         if (!_isopenMergeScreen)
@@ -258,7 +271,7 @@ public class AutorizationController : MonoBehaviour
 
     
     
-
+    //Кнопка старта игры
     public void StartButton()
     {
         orb._cameraTrigger = true;

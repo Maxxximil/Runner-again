@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SceneManagement;
 
-
+//Менеджер синглтона отвечающий за сохранение и загрузку локальных сохраненных данных
 public class DataManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }
