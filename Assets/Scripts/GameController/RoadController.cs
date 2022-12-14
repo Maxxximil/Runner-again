@@ -27,13 +27,16 @@ public class RoadController : MonoBehaviour
             _distance = (int)(_speed * time);
             Managers.Distance.AddDistance(_distance);
             Messenger.Broadcast("ADD_DISTANCE");
+
+            if (_speed > 23f) return;
+            //Изменение скорости в зависимости от пройденного расстояния
+            if (Managers.Distance.GetData() > _prevDistance + 600)
+            {
+                Managers.Speed.AddSpeed(1f);
+                _prevDistance = Managers.Distance.GetData();
+            }
         }
-        //Изменение скорости в зависимости от пройденного расстояния
-        if(Managers.Distance.GetData() > _prevDistance + 600)
-        {
-            Managers.Speed.AddSpeed(1f);
-            _prevDistance = Managers.Distance.GetData();
-        }
+        
     }
 
 }

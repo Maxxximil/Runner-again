@@ -251,7 +251,7 @@ public class RelativeMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Lose")
         {
-            
+            Managers.Speed.UpdateData(0f);
             //Рассылка пройгрыша
             Messenger.Broadcast("GAME_OVER");  
             _animator.SetBool("Run", false);
@@ -263,7 +263,7 @@ public class RelativeMovement : MonoBehaviour
             {
                 interAds.ShowAd();
             }
-            Managers.Speed.UpdateData(0f);
+            
             //Managers.Speed.ChangePause(false);
         }
     }
